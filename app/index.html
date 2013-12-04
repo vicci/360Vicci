@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en" ng-app="artistManager">
+<head>
+  <meta charset="utf-8">
+  <title>Google Phone Gallery</title>
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <script src="lib/angular/angular.js"></script>
+  <script src="js/controllers.js"></script>
+</head>
+<body ng-controller="artistController">
+
+  <header>
+  <button>logoff</button>
+  </header>
+
+  <h1>Artists.</h1>
+
+  <div>
+    <ul>
+      <li class="entity-li" ng-repeat="artist in viewableArtists">
+        <a href="http://www.google.com">
+          <div>
+            <h4>{{artist.name}}</h4>
+          </div>
+        </a>
+      </li>
+      <li class="entity-add">
+        add
+      </li>
+    </ul>
+  </div>
+
+
+</body>
+</html>
