@@ -14,21 +14,27 @@
   <button>logoff</button>
   </header>
 
-  <h1>Artists.</h1>
+  <div class='content-wrapper'>
+      <h1 class='title'>{{pageTitle}}</h1>
 
-  <div>
-    <ul>
-      <li class="entity-li" ng-repeat="artist in viewableArtists">
-        <a href="http://www.google.com">
-          <div>
-            <h4>{{artist.name}}</h4>
-          </div>
-        </a>
-      </li>
-      <li class="entity-add">
-        add
-      </li>
-    </ul>
+      <div class="entity-wrapper">
+        <ul>
+          <li class="entity-li" ng-repeat="artist in viewableArtists">
+            <a href="http://www.google.com" style="background:url({{artist.img}}) no-repeat center; -webkit-backgroung-size:cover;
+				-moz-background-size:cover; -o-background-size:cover; background-size:cover;">
+              <div class='entity-banner'>
+                <h4>{{artist.name}}</h4>
+              </div>
+            </a>
+          </li>
+          <li class="entity-add" >
+				<a href="#" style="background:url(http://pixabay.com/static/uploads/photo/2013/04/01/21/29/first-aid-99069_640.png?i) no-repeat center; -webkit-backgroung-size:cover;
+				-moz-background-size:cover; -o-background-size:cover; background-size:cover;">
+				</a>
+
+          </li>
+        </ul>
+      </div>
   </div>
 
 
