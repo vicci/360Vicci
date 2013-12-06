@@ -10,6 +10,8 @@ var DEFAULT_PORT = 1337;
 
 
 function main(argv) {
+	console.log('\nEntered Main\n');
+	
   new HttpServer({
     'GET': createServlet(StaticServlet),
     'HEAD': createServlet(StaticServlet)
@@ -24,6 +26,8 @@ function escapeHtml(value) {
 }
 
 function createServlet(Class) {
+	console.log('\nCreating Servlet\n');
+	
   var servlet = new Class();
   return servlet.handleRequest.bind(servlet);
 }
@@ -87,10 +91,16 @@ StaticServlet.MimeMap = {
 };
 
 StaticServlet.prototype.handleRequest = function(req, res) {
+	
+	console.log('\nHandling Request\n');
+	
   var self = this;
+  console.log(req.url.pathname);
   var path = ('./' + req.url.pathname).replace('//','/').replace(/%(..)/g, function(match, hex){
     return String.fromCharCode(parseInt(hex, 16));
   });
+  console.log('\n');
+  console.log(path);
   var parts = path.split('/');
   if (parts[parts.length-1].charAt(0) === '.')
     return self.sendForbidden_(req, res, path);
