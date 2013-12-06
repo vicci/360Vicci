@@ -4,7 +4,18 @@
 
 var artistManager = angular.module("artistManager", []);
 
-artistManager.controller('artistController', function($scope) {
+
+
+artistManager.controller('artistController', function($scope, $http) {
+    $http.get('data/artists.json').success(function(data) {
+          $scope.viewableArtists = data;
+            });
+
+      $scope.pageTitle = "Artists.";
+});
+
+
+/*artistManager.controller('artistController', function($scope) {
   $scope.pageTitle = "Artists."
   $scope.viewableArtists = [
     {
@@ -28,4 +39,4 @@ artistManager.controller('artistController', function($scope) {
 		'img': 'https://scontent-b-lax.xx.fbcdn.net/hphotos-ash4/1001581_10153121023335416_1540078767_n.jpg'
 	}
   ];
-});
+});*/
