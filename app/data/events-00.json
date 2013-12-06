@@ -1,0 +1,52 @@
+{
+  "events": [
+  {
+    "endDate": "2013-12-27 00:00:00",
+    "eventId": "60",
+    "eventImage": "http://cdn.getvicci.com/dnm-christmas/event-dnm.jpg",
+    "eventRadius": 200,
+    "eventTitle": "Donny & Marie Christmas",
+    "eventVerification": 0,
+    "latitude": 0,
+    "longitude": 0,
+    "place": "North America Tour",
+    "startDate": "2013-11-21 19:00:00"
+  },
+  {
+    "endDate": "2014-01-22 00:00:00",
+    "eventId": "61",
+    "eventImage": "http://cdn.getvicci.com/awake-and-alert/aa-event.jpg",
+    "eventRadius": 200,
+    "eventTitle": "Awake and Alert",
+    "eventVerification": 1,
+    "latitude": 33.421126,
+    "longitude": -111.830571,
+    "place": "Arizona",
+    "startDate": "2014-01-21 19:00:00"
+  },
+  {
+    "endDate": "2014-01-24 00:00:00",
+    "eventId": "62",
+    "eventImage": "http://cdn.getvicci.com/murrieta/murrieta-event.jpg",
+    "eventRadius": 200,
+    "eventTitle": "Murrieta",
+    "eventVerification": 1,
+    "latitude": 33.421126,
+    "longitude": -111.830571,
+    "place": "Arizona",
+    "startDate": "2014-01-23 19:00:00"
+  },
+  {
+    "endDate": "2014-01-27 19:00:00",
+    "eventId": "63",
+    "eventImage": "http://cdn.getvicci.com/transcend-eden/event-image.jpg",
+    "eventRadius": 200,
+    "eventTitle": "Transcend Eden",
+    "eventVerification": 0,
+    "latitude": 0,
+    "longitude": 0,
+    "place": "Eden",
+    "startDate": "2013-12-25 19:00:00"
+  }
+  ]
+}

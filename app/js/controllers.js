@@ -7,6 +7,7 @@ var eventManager = angular.module("eventManager", []);
 
 
 
+
 artistManager.controller('artistController', function($scope, $http) {
     $http.get('data/artists.json').success(function(data) {
           $scope.viewableArtists = data;
@@ -15,13 +16,64 @@ artistManager.controller('artistController', function($scope, $http) {
 });
 
 eventManager.controller('eventController', function($scope, $http) {
-    $http.get('data/events.json').success(function(data) {
+
+/*this.api_eventList = "http://api.getvicci.com/api/event/event_lists";
+this.lastEventListUpdate ='';
+$.ajax({
+type: 'POST',
+data: {lastUpdatedTime: this.lastEventListUpdate},
+url: this.api_eventList,
+success: function(json) {
+$scope.viewableEvents = json.events;
+console.log(json);
+},
+error: function(e) {
+  console.log(e.message);
+}
+});
+console.log($scope.viewableEvents);
+*/
+
+/*$http.post('http://api.getvicci.com/api/event/event_lists', {lastUpdatedTime: ''}).success(function(data) {
+  $scope.viewableEvents = data.events ;
+  });*/
+
+
+    $http.get('data/events-00.json').success(function(data) {
           $scope.viewableEvents = data.events;
             });
       $scope.pageTitle = "Events.";
 });
 
 
+
+
+
+/*
+this.lastEventListUpdate = ""
+this.api_eventList = "http://api.getvicci.com/api/event/event_lists"
+this.api_eventDetails = "http://api.getvicci.com/api/event/event_details"
+this.api_payment = "http://api.getvicci.com/api/payment/pay"
+this.api_login = "http://api.getvicci.com/api/user/login"
+
+this.getEventList = function(callback){
+$.ajax({
+type: 'POST',
+data: {lastUpdatedTime: this.lastEventListUpdate},
+url: this.api_eventList,
+success: function(json) {
+window.localStorage.setItem("events", JSON.stringify(json));
+this.lastEventListUpdate = json.lastUpdatedTime
+if (callback) {
+callback()
+}
+},
+error: function(e) {
+  console.log(e.message);
+}
+});
+}
+*/
 
 /*
 

@@ -1,0 +1,33 @@
+{
+  "resultCode": "0",
+  "resultString": "Success",
+  "events": [
+  {
+    "eventId": "",
+    "eventTitle": "event01",
+    "startDate": "",
+    "endDate": "",
+    "place": "",
+    "latitude": "",
+    "longitude": "",
+	 	"eventImage": "http://ww1.prweb.com/prfiles/2012/06/24/9815034/carrie-underwood-2.jpg",
+    "eventRadius":"",
+    "eventVerification":""
+  },
+  {
+    "eventId": "",
+    "eventTitle": "event02",
+    "startDate": "",
+    "endDate": "",
+    "place": "",
+    "latitude": "",
+    "longitude": "",
+    "eventImage": "",
+    "eventRadius":"",
+    "eventVerification":""
+  } 
+  ],
+  "deletedEvents": [],
+  "lastUpdatedTime": ""
+} 
+
