@@ -1,7 +1,7 @@
 BYU CS360 Web Application - Vicci Front End
 -------------------------------------------
 
-####Idea, Features, and Architecture
+###Idea, Features, and Architecture
 
 
 **What:** Vicci Mobile Merchandise Client Web-Portal
@@ -16,12 +16,9 @@ Who will use this: Clients ranging from One Direction to the Seattle Seahawks
 
 
 **Team:**
-Mikey Murphy
-Joey Cozza
-Jin Lee
-Adam Christiansen
+Mikey Murphy, Joey Cozza, Jin Lee, Adam Christiansen
 
-####Milestone 1
+###Milestone 1
 
 We have invested a significant amount of our time on design, architecture and user experience. We worked closely with Vicci’s CEO and the rest of the non-technical Vicci team to gain an  understanding of the needs to be met.  After presenting our final design and wire frames to the Vicci team and incorporating their positive feedback, we submitted our designs to the professional designer that we have access to. 
 
