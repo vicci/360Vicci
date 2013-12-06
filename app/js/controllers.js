@@ -3,6 +3,7 @@
 /* Controllers */
 
 var artistManager = angular.module("artistManager", []);
+var eventManager = angular.module("eventManager", []);
 
 
 
@@ -10,12 +11,29 @@ artistManager.controller('artistController', function($scope, $http) {
     $http.get('data/artists.json').success(function(data) {
           $scope.viewableArtists = data;
             });
-
       $scope.pageTitle = "Artists.";
 });
 
+eventManager.controller('eventController', function($scope, $http) {
+    $http.get('data/events.json').success(function(data) {
+          $scope.viewableEvents = data.events;
+            });
+      $scope.pageTitle = "Events.";
+});
 
-/*artistManager.controller('artistController', function($scope) {
+
+
+/*
+
+$http({
+    method: 'POST',
+      url:'http://api.getvicci.com/api/event/event_lists',
+        headers: {},
+          data: {"lastUpdatedTime": ""}});
+
+
+
+artistManager.controller('artistController', function($scope) {
   $scope.pageTitle = "Artists."
   $scope.viewableArtists = [
     {
