@@ -5,7 +5,8 @@
 }
 @font-face{
 	font-family: 'oldSans';
-	src: url('../font/old_sans_black/OldSansBlack.tff')
+	src: url('../ls
+vifont/old_sans_black/OldSansBlack.tff')
 		format('truetype');	
 }
 html{
