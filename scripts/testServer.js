@@ -4,9 +4,7 @@ var mysql = require('mysql');
 var http = require('http');
 var path = require('path');
 
-va
-
-r connection = mysql.createConnection({
+var connection = mysql.createConnection({
 	host: 'localhost',
 	user: 'root@localhost',
   port: '8888',
