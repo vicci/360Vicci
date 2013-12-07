@@ -39,10 +39,16 @@ app.get('/', function(req, res) {
 	
 	console.log('\n\nI am going to try querying first, and then serve up the page afterwards\n\n');
 	
+	
+	
     connection.query('SELECT 1 + 1 AS solution', function(err, rows, fields) {
       if (err) throw err;
       console.log('The solution is: ', rows[0].solution);
     });
+ 
+	console.log('this is a connection object\n\n');
+	console.log(connection);
+	console.log('\n\n');
  
   res.sendfile(path.join(clientDir, 'index.html'))
 })
