@@ -1,7 +1,18 @@
-var express = require('express')
-var http = require('http')
-var path = require('path')
-console.log('-------------------------------')
+var express = require('express');
+var mysql = require('mysql');
+var http = require('http');
+var path = require('path');
+
+var connection = mysql.createConnection({
+	host: '',
+	user: 'api',
+	password: 'V4f23k4uEI2J8R1L14KF',
+});
+
+connection.connect(function(err) {
+	console.log(err);
+});
+
 
 var app = express()
 var clientDir = path.join(__dirname, '../app')
