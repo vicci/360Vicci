@@ -16,6 +16,11 @@ app.get('/', function(req, res) {
   res.sendfile(path.join(clientDir, 'index.html'))
 })
 
+app.get('/events', function(req, res) {
+  res.sendfile(path.join(clientDir, 'events.html'))
+})
+
+
 var server = http.createServer(app)
 
 server.listen(app.get('port'), function() {
