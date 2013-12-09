@@ -24,10 +24,11 @@ app.get('/', function(req, res) {
 	console.log('\n\nI am going to try querying first, and then serve up the page afterwards\n\n');
 	
     sequelize.query('SELECT * FROM event').success(function(rows){
-    	console.log(rows);
+    	console.log('\nI am about to print rows:');
+		console.log(rows);
     });
  
-	console.log('this is a sequelize object:');
+	console.log('\n\nthis is a sequelize object:');
 	console.log(sequelize);
 	console.log('\n\n');
  
