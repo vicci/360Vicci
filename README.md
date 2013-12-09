@@ -25,3 +25,9 @@ We have invested a significant amount of our time on design, architecture and us
 While waiting for the designs, we have been individually going through Angular and Node tutorials.
 
 Our final Interface Design can be seen on this [Prezi](http://prezi.com/ht31clpy510w/?utm_campaign=share&utm_medium=copy)
+
+###Milestone 2
+
+At this point in the project, we have made a lot of progress on the front end. The way thay we designed our app allows us to keep the same basic structure for all of our views, which simplified our work. We are succesfully using Angular to read in a JSON object, and populate our page with that data. Also, most of the styling and CSS is also finished for those pages.  
+
+Our biggest hurdle at this point is with our backend.  We have to integrate our Node server with existing an database and things aren't working as easily as we had hoped.  We have made a copy of the database and can host it locally, but we can't get our Node server to query it for data we need.  We will be speaking with Dr. Zappala today to get a little help with this issue.   
