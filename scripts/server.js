@@ -7,7 +7,7 @@ var path = require('path');
 var connection = mysql.createConnection({
 	host: 'localhost',
 	user: 'root@localhost',
-  port: '8888',
+  port: '3306',
   database: 'api_node'
 });
 
