@@ -4,7 +4,7 @@ var Sequelize = require('sequelize');
 var http = require('http');
 var path = require('path');
 
-var sequelize = new Sequelize('api_node', 'root@localhost', null, {
+var sequelize = new Sequelize('testingviccinew', 'root', 'FFBEsyAI', {
 	host: 'localhost',
 	port: 8888
 });
@@ -23,14 +23,12 @@ app.get('/', function(req, res) {
 	
 	console.log('\n\nI am going to try querying first, and then serve up the page afterwards\n\n');
 	
-    sequelize.query('SELECT * FROM event').success(function(rows){
+    var query = sequelize.query('SELECT * FROM test.clothes').success(function(rows){
     	console.log('\nI am about to print rows:');
 		console.log(rows);
+    }).error(function(err) {
+    	console.log('I AM AN ERROR: ' + err);
     });
- 
-	console.log('\n\nthis is a sequelize object:');
-	console.log(sequelize);
-	console.log('\n\n');
  
   	res.sendfile(path.join(clientDir, 'index.html'))
 })

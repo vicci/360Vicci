@@ -3,6 +3,15 @@ var express = require('express');
 var http = require('http');
 var path = require('path');
 
+<<<<<<< HEAD
+=======
+var connection = mysql.createConnection({
+	host: 'localhost',
+	user: 'root@localhost',
+  port: '3306',
+  database: 'api_node'
+});
+>>>>>>> 069b1fd216825cb8c18517933e7fc82739fa684e
 
 
 console.log('before executing the query')

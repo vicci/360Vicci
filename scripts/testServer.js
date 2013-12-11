@@ -1,27 +1,15 @@
 
 var express = require('express');
-var mysql = require('mysql');
+var Sequelize = require('sequelize');
 var http = require('http');
 var path = require('path');
 
-var connection = mysql.createConnection({
-	host: 'localhost',
-	user: 'root@localhost',
-  port: '8888',
-  database: 'api_node'
+//setting up sequelize this way worked running a little test database locally
+//it was a MySQL database 
+var sequelize = new Sequelize('api_test', 'api', 'V4f23k4uEI2J8R1L14KF', {
+  host: 'localhost',
+  port: 3306
 });
-
-connection.connect(function(err) {
-	console.log(err);
-});
-
-connection.query('SELECT 1 + 1 AS solution', function(err, rows, fields) {
-  if (err) throw err;
-
-  console.log('The solution is: ', rows[0].solution);
-});
-
-connection.end();
 
 
 var app = express()
@@ -34,26 +22,19 @@ app.configure(function() {
 })
 
 app.get('/', function(req, res) {
-	
-	console.log('\n\nI am going to try querying first, and then serve up the page afterwards\n\n');
-	
-	
-	
-    connection.query('SELECT 1 + 1 AS solution', function(err, rows, fields) {
-      if (err) throw err;
-      console.log('The solution is: ', rows[0].solution);
+
+  console.log(sequelize);
+		
+sequelize.query('SELECT * FROM event').success(function(rows){
+      console.log('\nI am about to print rows:');
+    console.log(rows);
+    }).error(function(err) {
+      console.log('I AM AN ERROR: ' + err);
     });
  
-	console.log('this is a connection object\n\n');
-	console.log(connection);
-	console.log('\n\n');
- 
-  res.sendfile(path.join(clientDir, 'index.html'))
 })
 
-app.get('/events', function(req, res) {
-  res.sendfile(path.join(clientDir, 'events.html'))
-})
+app.get('/events', function(req, res) {})
 
 
 var server = http.createServer(app)
