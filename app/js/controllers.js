@@ -53,14 +53,6 @@ console.log($scope.viewableEvents);
       $scope.pageTitle = "Events.";
 });
 
-<<<<<<< HEAD
-vicciappControllers.controller('merchController', ['$scope', '$routeParams', 
-  function($scope, $routeParams) {
-  $scope.eventId = $routeParams.eventId;
-  $scope.pageTitle = "Merchandise.";
-}]);
-=======
-
 artistManager.controller('loginController', function($scope){
   $scope.username = "Enter Email";
   $scope.password = "Password";
@@ -77,7 +69,6 @@ artistManager.controller('loginController', function($scope){
 
 
 
->>>>>>> 069b1fd216825cb8c18517933e7fc82739fa684e
 
 
 /*
