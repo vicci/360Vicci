@@ -2,30 +2,38 @@
 
 /* Controllers */
 
-var artistManager = angular.module("artistManager", []);
-var eventManager = angular.module("eventManager", []);
+var vicciappControllers = angular.module("vicciappControllers", []);
 
 
+vicciappControllers.controller('artistController', ['$scope', '$http',
+  function($scope, $http) {
+    $http.get('data/artists.json').success(function(data) {
+      $scope.viewableArtists = data;
+    });
 
-
-artistManager.controller('artistController', function($scope, $http) {
+    $scope.pageTitle = 'Artists.';
+  }]);
+/*
+vicciappControllers.controller('artistController', ['$scope', '$http',
+  function($scope, $http) {
     $http.get('data/artists.json').success(function(data) {
           $scope.viewableArtists = data;
             });
       $scope.pageTitle = "Artists.";
-});
+}]);
+*/
+vicciappControllers.controller('eventController', function($scope, $http) {
 
-eventManager.controller('eventController', function($scope, $http) {
-
-/*this.api_eventList = "http://api.getvicci.com/api/event/event_lists";
+/*
+this.api_eventList = "http://api.getvicci.com/api/event/event_details";
 this.lastEventListUpdate ='';
 $.ajax({
 type: 'POST',
-data: {lastUpdatedTime: this.lastEventListUpdate},
+data: {eventId: '61', lastUpdatedTime: this.lastEventListUpdate},
 url: this.api_eventList,
 success: function(json) {
 $scope.viewableEvents = json.events;
-console.log(json);
+console.log(JSON.stringify(json));
 },
 error: function(e) {
   console.log(e.message);
@@ -45,8 +53,11 @@ console.log($scope.viewableEvents);
       $scope.pageTitle = "Events.";
 });
 
-
-
+vicciappControllers.controller('merchController', ['$scope', '$routeParams', 
+  function($scope, $routeParams) {
+  $scope.eventId = $routeParams.eventId;
+  $scope.pageTitle = "Merchandise.";
+}]);
 
 
 /*
@@ -110,3 +121,7 @@ artistManager.controller('artistController', function($scope) {
 	}
   ];
 });*/
+
+
+
+

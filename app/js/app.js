@@ -1,6 +1,25 @@
 'use strict';
 
 /* App Module */
-.config(function($httpProvider){
-      delete $httpProvider.defaults.headers.common['X-Requested-With'];
-});
+
+var vicciApp = angular.module('vicciApp', [
+  'ngRoute',
+  'vicciappControllers'
+]);
+
+vicciApp.config(['$routeProvider',
+  function($routeProvider) {
+    $routeProvider.
+      when('/artists', {
+        templateUrl: 'partials/artists.html',
+        controller: 'artistController'
+      }).
+      when('/events', {
+        templateUrl: 'partials/events.html',
+        controller: 'eventsController'
+      }).
+      otherwise({
+        redirectTo: '/artists'
+      });
+  }]);
+  

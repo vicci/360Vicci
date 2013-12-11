@@ -1,29 +1,13 @@
 
 var express = require('express');
-var mysql = require('mysql');
 var http = require('http');
 var path = require('path');
 
-var connection = mysql.createConnection({
-	host: 'localhost',
-	user: 'root@localhost',
-  port: '8888',
-  database: 'api_node'
-});
 
-connection.connect(function(err) {
-	console.log(err);
-});
 
 console.log('before executing the query')
 
-connection.query('SELECT * FROM event', function(error, rows, fields){
-  console.log('starting the query');
-  if (error)
-    throw error;
 
-  console.log(rows)
-})
 
 
 var app = express()
@@ -36,6 +20,7 @@ app.configure(function() {
 })
 
 app.get('/', function(req, res) {
+  console.log("sending: " + path.join(clientDir, "index.html"));
   res.sendfile(path.join(clientDir, 'index.html'))
 })
 
@@ -50,4 +35,3 @@ server.listen(app.get('port'), function() {
   console.log('listening on: %d', app.get('port'))
 });
 
-connection.end();
