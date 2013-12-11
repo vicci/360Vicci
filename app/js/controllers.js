@@ -46,6 +46,21 @@ console.log($scope.viewableEvents);
 });
 
 
+artistManager.controller('loginController', function($scope){
+  $scope.username = "Enter Email";
+  $scope.password = "Password";
+
+  $scope.verifyInput = function(){
+    //if input is good i.e. email address and 
+    //password are proper length etc.
+    //then verify credentials
+    //else re-login
+    $scope.username = "verifyInput()";
+    //$scope.username = validateEmail();
+  }
+});
+
+
 
 
 
