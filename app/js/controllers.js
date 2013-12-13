@@ -26,6 +26,7 @@ $scope.uploadFile = function((files) {
 
 /*
 NOTE TO SELVES. TRYING TO FIGURE OUT THE CLOSINGS PROPERLY FOR UPLOADING FILES...
+http://jsfiddle.net/vishalvasani/4hqVu/
 */
 vicciappControllers.controller('alphatestController', ['$scope', '$routeParams', '$http',
 function($scope, $routeParams, $http){
