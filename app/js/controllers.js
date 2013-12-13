@@ -64,7 +64,10 @@ console.log($scope.viewableEvents);
       $scope.pageTitle = "Events.";
 });
 
+<<<<<<< HEAD
 /*artistManager.controller('loginController', function($scope){
+//artistManager.controller('loginController', function($scope){
+vicciappControllers.controller('loginController', function($scope){
   $scope.username = "Enter Email";
   $scope.password = "Password";
 
@@ -73,10 +76,35 @@ console.log($scope.viewableEvents);
     //password are proper length etc.
     //then verify credentials
     //else re-login
-    $scope.username = "verifyInput()";
-    //$scope.username = validateEmail();
+
+    //$scope.username = "inside verifyInput()";
+    //$scope.validEmail = $scope.validateEmail($scope.username);
+    $scope.validEmail = validateEmail($scope.username);
+    $scope.username = $scope.validEmail;
+
+    $scope.validPw = validatePw($scope.password);
+    $scope.password = $scope.validPw;
+  }
+
+  $scope.validateEmail = function(email) {
+    //$scope.username = "inside validateEmail";
+    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    //var re = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    return re.test(email);
   }
 });*/
+
+function validateEmail(email) {
+  var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(email);
+}
+
+function validatePw(password) {
+  if (password.length > 3)
+    return true;
+  else
+    return false;
+}
 
 
 
