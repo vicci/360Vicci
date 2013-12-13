@@ -5,6 +5,18 @@
 var vicciappControllers = angular.module("vicciappControllers", []);
 
 
+/*
+the following controller is for alpha tests.
+ie. any testing for code we want to run
+*/
+
+vicciappControllers.controller('alphatestController', ['$scope', '$routeParams', '$http',
+  function($scope, $routeParams, $http){
+    console.log("hello there");
+$scope.pageTitle = 'alpha testing';
+}]);
+
+
 
 
 vicciappControllers.controller('artistController', ['$scope', '$http',

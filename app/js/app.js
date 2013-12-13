@@ -26,6 +26,10 @@ vicciApp.config(['$routeProvider',
         templateUrl: 'partials/merch-details.html',
         controller: 'merchDetailsController'
       }).
+      when('/alphatest', {
+        templateUrl: 'partials/alphatest.html',
+        controller: 'alphatestController'
+      }).
       otherwise({
         redirectTo: '/artists'
       });
