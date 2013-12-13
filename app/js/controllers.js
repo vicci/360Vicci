@@ -73,7 +73,6 @@ console.log($scope.viewableEvents);
       
 });
 
-<<<<<<< HEAD
 /*artistManager.controller('loginController', function($scope){
 //artistManager.controller('loginController', function($scope){
 vicciappControllers.controller('loginController', function($scope){
