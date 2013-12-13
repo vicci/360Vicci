@@ -25,12 +25,35 @@ vicciappControllers.controller('artistController', ['$scope', '$http',
 }]);
 */
 
+vicciappControllers.controller('merchDetailsController', ['$scope', '$routeParams', '$http',
+  function($scope, $routeParams, $http) {
+    $http.get('data/' + $routeParams.eventId + '.json').success(function(data) {
+      $scope.items = findCategory(data.categories, $routeParams.categoryId); //data.categories;
+      });
+    console.log($routeParams.category);
+    $scope.pageTitle = $routeParams.category;
+  }]);
+
+
+function findCategory(categories, categoryId) {
+  for (var i = 0, len = categories.length ; i < len ; i++)
+  {
+    if(categories[i].categoryId == categoryId)
+    {
+      console.log(categories[i].items);
+      return categories[i].items;
+    }
+  }
+}
+
 vicciappControllers.controller('merchController', ['$scope', '$routeParams', '$http',
   function($scope, $routeParams, $http) {
     $http.get('data/' + $routeParams.eventId + '.json').success(function(data) {
+      $scope.eventId = $routeParams.eventId;
       $scope.merchandise = data.categories;
     });
     $scope.pageTitle = 'Merchandise.';
+//    $scope.nextURL = getNextURL($scope.eventId, $scope.merchandise)
   }]);
 
 vicciappControllers.controller('eventController', function($scope, $http) {
