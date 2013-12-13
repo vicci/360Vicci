@@ -16,7 +16,11 @@ vicciApp.config(['$routeProvider',
       }).
       when('/events', {
         templateUrl: 'partials/events.html',
-        controller: 'eventsController'
+        controller: 'eventController'
+      }).
+      when('/events/:eventId', {
+        templateUrl: 'partials/merch.html',
+        controller: 'merchController'
       }).
       otherwise({
         redirectTo: '/artists'

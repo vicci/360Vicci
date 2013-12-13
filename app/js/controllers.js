@@ -5,6 +5,8 @@
 var vicciappControllers = angular.module("vicciappControllers", []);
 
 
+
+
 vicciappControllers.controller('artistController', ['$scope', '$http',
   function($scope, $http) {
     $http.get('data/artists.json').success(function(data) {
@@ -22,6 +24,15 @@ vicciappControllers.controller('artistController', ['$scope', '$http',
       $scope.pageTitle = "Artists.";
 }]);
 */
+
+vicciappControllers.controller('merchController', ['$scope', '$routeParams', '$http',
+  function($scope, $routeParams, $http) {
+    $http.get('data/' + $routeParams.eventId + '.json').success(function(data) {
+      $scope.merchandise = data.categories;
+    });
+    $scope.pageTitle = 'Merchandise.';
+  }]);
+
 vicciappControllers.controller('eventController', function($scope, $http) {
 
 /*
@@ -62,6 +73,8 @@ console.log($scope.viewableEvents);
       
 });
 
+<<<<<<< HEAD
+/*artistManager.controller('loginController', function($scope){
 //artistManager.controller('loginController', function($scope){
 vicciappControllers.controller('loginController', function($scope){
   $scope.username = "Enter Email";
@@ -88,7 +101,7 @@ vicciappControllers.controller('loginController', function($scope){
     //var re = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     return re.test(email);
   }
-});
+});*/
 
 function validateEmail(email) {
   var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;

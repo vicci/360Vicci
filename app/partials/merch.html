@@ -1,15 +1,4 @@
-<!doctype html>
-<html lang="en" ng-app="eventManager">
-<head>
-  <meta charset="utf-8">
-  <title>Vicci - Merchandise</title>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-  <link rel="stylesheet" href="css/app.css">
-  <script src="lib/angular/angular.js"></script>
-  <script src="js/controllers.js"></script>
-</head>
-<body ng-controller="eventController">
-
+<div>
   <header>
   <button>logoff</button>
   </header>
@@ -19,11 +8,11 @@
 
       <div class="entity-wrapper">
         <ul>
-          <li class="entity-li" ng-repeat="event in viewableEvents">
-            <a href="http://www.google.com" style="background:url({{event.eventImage}}) no-repeat center; -webkit-backgroung-size:cover;
+          <li class="entity-li" ng-repeat="item in merchandise">
+            <a href="http://www.google.com" style="background:url({{item.categoryImage}}) no-repeat center; -webkit-backgroung-size:cover;
 				-moz-background-size:cover; -o-background-size:cover; background-size:cover;">
               <div class='entity-banner'>
-                <h4>{{event.eventTitle}}</h4>
+                <h4>{{item.categoryName}}</h4>
               </div>
             </a>
           </li>
@@ -37,6 +26,4 @@
       </div>
   </div>
 
-
-</body>
-</html>
+</div>
