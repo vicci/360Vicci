@@ -9,12 +9,40 @@ var vicciappControllers = angular.module("vicciappControllers", []);
 the following controller is for alpha tests.
 ie. any testing for code we want to run
 */
+/*
+$scope.uploadFile = function((files) {
+    var fd = new FormData();
+    //Take the first selected file
+    fd.append("file", files[0]);
 
+    $http.post(uploadUrl, fd, {
+        withCredentials: true,
+        headers: {'Content-Type': undefined },
+        transformRequest: angular.identity
+    }).success( ...all right!... ).error( ..damn!... );
+
+});*/
+
+
+/*
+NOTE TO SELVES. TRYING TO FIGURE OUT THE CLOSINGS PROPERLY FOR UPLOADING FILES...
+*/
 vicciappControllers.controller('alphatestController', ['$scope', '$routeParams', '$http',
-  function($scope, $routeParams, $http){
+function($scope, $routeParams, $http){
     console.log("hello there");
-$scope.pageTitle = 'alpha testing';
-}]);
+}]
+$scope.pageTitle = 'alpha testing'
+  $scope.uploadFile = function(element) {
+    $scope.$apply(function(scope) {
+      console.log("inside the scope.apply function stuff.");
+      $scope.files = [];
+      for(var i = 0 ; i < element.files.length; i ++) {
+        $scope.files.push(element.files[i])
+      }
+    })
+  }
+  
+);
 
 
 

@@ -1,29 +1,12 @@
 <div>
-  <header>
-  <button>logoff</button>
-  </header>
+<h1 class="title">{{pageTitle}}</h1>
 
-  <div class='content-wrapper'>
-      <h1 class='title'>{{pageTitle}}</h1>
 
-      <div class="entity-wrapper">
-        <ul>
-          <li class="entity-li" ng-repeat="item in items">
-            <a href="http://www.google.com" style="background:url({{item.itemImage}}) no-repeat center; -webkit-backgroung-size:cover;
-				-moz-background-size:cover; -o-background-size:cover; background-size:cover;">
-              <div class='entity-banner'>
-                <h4>{{item.itemName}} - ${{item.itemPrice}}</h4>
-              </div>
-            </a>
-          </li>
-          <li class="entity-add" >
-				<a href="#" style="background:url(http://www.emilyplus1.com/wp-content/uploads/2013/11/plus-sign-clip-art1.png) no-repeat center; -webkit-backgroung-size:cover;
-				-moz-background-size:cover; -o-background-size:cover; background-size:cover;">
-				</a>
-
-          </li>
-        </ul>
-      </div>
-  </div>
+picture and clientname
+<label>Client Name: </label>
+<input type="text" ng-model="user.artistName" required/>
+<br>
+<label>Picture: </label>
+<input type="file" name="file" onchange="angular.element(this).scope().uploadFile(this.files)"/>
 
 </div>
