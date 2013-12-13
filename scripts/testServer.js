@@ -25,16 +25,17 @@ app.get('/', function(req, res) {
 
   console.log(sequelize);
 		
-sequelize.query('SELECT * FROM event').success(function(rows){
-      console.log('\nI am about to print rows:');
-    console.log(rows);
+  var query = sequelize.query('SELECT * FROM event').success(function(rows){
+
+      //console.log(rows);
     }).error(function(err) {
       console.log('I AM AN ERROR: ' + err);
     });
- 
+          console.log('\noutside the sequelize query');
+    console.log(query)
+  return "<html><body><h1>Hi</h1></body></html>"
 })
 
-app.get('/events', function(req, res) {})
 
 
 var server = http.createServer(app)
