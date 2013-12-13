@@ -5,6 +5,8 @@
 var vicciappControllers = angular.module("vicciappControllers", []);
 
 
+
+
 vicciappControllers.controller('artistController', ['$scope', '$http',
   function($scope, $http) {
     $http.get('data/artists.json').success(function(data) {
@@ -22,6 +24,15 @@ vicciappControllers.controller('artistController', ['$scope', '$http',
       $scope.pageTitle = "Artists.";
 }]);
 */
+
+vicciappControllers.controller('merchController', ['$scope', '$routeParams', '$http',
+  function($scope, $routeParams, $http) {
+    $http.get('data/' + $routeParams.eventId + '.json').success(function(data) {
+      $scope.merchandise = data.categories;
+    });
+    $scope.pageTitle = 'Merchandise.';
+  }]);
+
 vicciappControllers.controller('eventController', function($scope, $http) {
 
 /*
@@ -53,7 +64,7 @@ console.log($scope.viewableEvents);
       $scope.pageTitle = "Events.";
 });
 
-artistManager.controller('loginController', function($scope){
+/*artistManager.controller('loginController', function($scope){
   $scope.username = "Enter Email";
   $scope.password = "Password";
 
@@ -65,7 +76,7 @@ artistManager.controller('loginController', function($scope){
     $scope.username = "verifyInput()";
     //$scope.username = validateEmail();
   }
-});
+});*/
 
 
 
