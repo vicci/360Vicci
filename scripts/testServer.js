@@ -14,11 +14,28 @@ var sequelize = new Sequelize('api_test', 'api', 'V4f23k4uEI2J8R1L14KF', {
 
 var app = express()
 var clientDir = path.join(__dirname, '../app')
+var allowXDomain = function(req, res, next) {
+  console.log("function allowXDomain")
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'content-type, Content-Length, Authorization, Origin, Accept')
+  if(req.method === 'OPTIONS')
+  {
+    res.send(200);
+  }
+  else
+  {
+    next();
+  }
+};
 
 app.configure(function() {
   app.set('port', 1337)
+  app.use(express.bodyParser());
+  app.use(express.methodOverride());
   app.use(app.router)
   app.use(express.static(clientDir))
+  app.use(allowXDomain);
 })
 
 app.get('/', function(req, res) {

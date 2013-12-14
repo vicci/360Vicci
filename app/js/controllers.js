@@ -28,7 +28,7 @@ $scope.uploadFile = function((files) {
 NOTE TO SELVES. TRYING TO FIGURE OUT THE CLOSINGS PROPERLY FOR UPLOADING FILES...
 http://jsfiddle.net/vishalvasani/4hqVu/
 */
-vicciappControllers.controller('alphatestController', ['$scope', '$routeParams', '$http',
+/*vicciappControllers.controller('alphatestController', ['$scope', '$routeParams', '$http',
 function($scope, $routeParams, $http){
     console.log("hello there");
 }]
@@ -43,7 +43,7 @@ $scope.pageTitle = 'alpha testing'
     })
   }
   
-);
+);*/
 
 
 
