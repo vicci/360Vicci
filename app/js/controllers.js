@@ -22,9 +22,6 @@ $scope.uploadFile = function((files) {
     }).success( ...all right!... ).error( ..damn!... );
 
 });*/
-function artistAdd($scope) {
-  console.log("artistAdd function");
-};
 vicciappControllers.controller('artistAddController', ['$scope',
 function($scope) {
   console.log("artistAddController");
@@ -33,8 +30,12 @@ function($scope) {
     artistImg: ''
   };
   $scope.addArtist = function() {
+    console.log("master before:");
+    console.log(master);
     master = $scope.form;
     console.log("saved");
+    console.log("master after");
+    console.log(master);
   }
 }]);
 
