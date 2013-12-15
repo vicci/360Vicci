@@ -107,16 +107,36 @@ function findCategory(categories, categoryId) {
   }
 }
 
-vicciappControllers.controller('merchController', ['$scope', '$routeParams', '$http',
+vicciappControllers.controller('categoriesController', ['$scope', '$routeParams', '$http',
   function($scope, $routeParams, $http) {
-    $http({method: 'POST', url: 'http://www.getvicci.com/node/merch', data:{'eventId': $routeParams.eventId}}).success(function(data) {
-      $scope.eventId = $routeParams.eventId;
-      $scope.merchandise = data;
+    $http({method: 'POST', url: 'http://www.getvicci.com/node/categories', data:{'eventId': $routeParams.eventId}}).success(function(data) {
+      console.log("ANGULAR SUCCESS calling getvicci.com/categories");
+      $scope.categories = data;
+    }).
+    error(function(data, status, headers, config) {
+      console.log("ANGULAR ERROR CALLING getvicci.com/categories");
     });
-    $scope.pageTitle = 'Merchandise.';
-//    $scope.nextURL = getNextURL($scope.eventId, $scope.merchandise)
-  }]);
+  $scope.pageTitle = "Merchandise Categories";
+  $scope.addCategory = function() {
+    $http({method: 'PUT', url: 'http://www.getvicci.com/node/categories', data: {
+      'name': $scope.form.categoryName,
+      'image': $scope.form.categoryImage,
+      'eventId': $routeParams.eventId
+    }}).success(function(data, status, headers, config) {
+      console.log("successfully added CATEGORY into DB");
+      console.log("this is data: ");
+      console.log(data);
+    }).error(function(err) {
+      console.log("error doing PUT for CATEGORY");
+      console.log(err);
+    });
+  };
+  $scope.eventId = $routeParams.eventId;
+}]);
 
+/*
+ * Event Controller::
+ */
 vicciappControllers.controller('eventController', ['$scope', '$routeParams', '$http',
   function($scope, $routeParams, $http) {
     $http({method: 'POST', url: 'http://www.getvicci.com/node/events', data:{'artistId': $routeParams.artistId}}).
@@ -128,7 +148,6 @@ vicciappControllers.controller('eventController', ['$scope', '$routeParams', '$h
       error(function(data, status, headers, config) {
 		    console.log('ANGULAR ERROR CALLING GETVICCI.COM/NODE');
       });
-	  console.log('Inside event controller');
    $scope.addEvent = function() {
     $http({method: 'PUT', url: 'http://www.getvicci.com/node/events', data:{
       'artistId': $routeParams.artistId,

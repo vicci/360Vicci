@@ -18,9 +18,9 @@ vicciApp.config(['$routeProvider',
         templateUrl: 'partials/events.html',
         controller: 'eventController'
       }).
-      when('/merch/:artistId/:eventId', {
-        templateUrl: 'partials/merch.html',
-        controller: 'merchController'
+      when('/categories/:eventId', {
+        templateUrl: 'partials/categories.html',
+        controller: 'categoriesController'
       }).
       when('/details/:artistId/:eventId/:category/:categoryId', {
         templateUrl: 'partials/merch-details.html',

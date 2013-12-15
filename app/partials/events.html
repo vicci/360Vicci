@@ -2,7 +2,7 @@
   <button>logoff</button>
   </header>
   <div class="content-wrapper">
-    <form name="newArtist">
+    <form name="newEvent">
     <label>Event Title:</label>
     <input type="text" ng-model="form.eventTitle" required/>
     <label>Image URL:</label>
@@ -37,7 +37,7 @@
       <div class="entity-wrapper">
         <ul>
           <li class="entity-li" ng-repeat="event in viewableEvents">
-            <a href="#/events/{{artistId}}/{{event.id}}" style="background:url({{event.image}}) no-repeat center; -webkit-background-size:cover;
+            <a href="#/merch/{{event.id}}" style="background:url({{event.image}}) no-repeat center; -webkit-background-size:cover;
 				-moz-background-size:cover; -o-background-size:cover; background-size:cover;">
               <div class='entity-banner'>
                 <h4>{{event.title}}</h4>

@@ -1,0 +1,38 @@
+<div>
+  <header>
+  <button>logoff</button>
+  </header>
+  <div class="content-wrapper">
+    <form name="newCategory">
+    <label>Category Name</label>
+    <input type="text" ng-model="form.categoryName" required/>
+    <label>Image URL</label>
+    <input type="url" ng-model="form.categoryImage" placeholder="http://" required/>
+    <button ng-click="addCategory()">Add Category</button>
+
+  </div>
+
+  <div class='content-wrapper'>
+      <h1 class='title'>{{pageTitle}}</h1>
+
+      <div class="entity-wrapper">
+        <ul>
+          <li class="entity-li" ng-repeat="category in categories">
+            <a href="#/merch/{{artistId}}/{{eventId}}/{{category.id}}" style="background:url({{item.image}}) no-repeat center; -webkit-backgroung-size:cover;
+				-moz-background-size:cover; -o-background-size:cover; background-size:cover;">
+              <div class='entity-banner'>
+                <h4>{{category.name}}</h4>
+              </div>
+            </a>
+          </li>
+          <li class="entity-add" >
+				<a href="#" style="background:url(http://www.emilyplus1.com/wp-content/uploads/2013/11/plus-sign-clip-art1.png) no-repeat center; -webkit-backgroung-size:cover;
+				-moz-background-size:cover; -o-background-size:cover; background-size:cover;">
+				</a>
+
+          </li>
+        </ul>
+      </div>
+  </div>
+
+</div>
