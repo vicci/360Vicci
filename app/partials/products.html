@@ -6,19 +6,19 @@
   <div class="content-wrapper">
     <form name="newProduct">
       <label>product_sku</label>
-      <input type="text" ng-model="productSKU" required/>
+      <input type="text" ng-model="form.productSKU" required/>
       <label>Title</label>
-      <input type="text" ng-model="productTitle" required/>
+      <input type="text" ng-model="form.productTitle" required/>
       <label>Description</label>
-      <input type="text" ng-model="productDescription" required/>
+      <input type="text" ng-model="form.productDescription" required/>
       <label>Image</label>
-      <input type="text" ng-model="productImage" required/>
+      <input type="text" ng-model="form.productImage" required/>
       <label>Size</label>
-      <input type="text" ng-model="productSizes" required/>
+      <input type="text" ng-model="form.productSizes" required/>
       <label>Prices</label>
-      <input type="text" ng-model="productPrices" required/>
+      <input type="text" ng-model="form.productPrices" required/>
       <label>weight</label>
-      <input type="text" ng-model="productWeight" required/>
+      <input type="text" ng-model="form.productWeight" required/>
 	  <button ng-click='addProduct()'>Add Product</button>
     </form>
   </div>
