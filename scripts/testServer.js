@@ -53,11 +53,8 @@ app.get('/', function(req, res) {
 
 
 app.post('/merch', function(req, res) {
-	
-	console.log('\na\na\n Got into \"node/merch\"');
-	console.log(req);
   		
-  	var query = sequelize.query('SELECT * FROM booth').success(function(rows){
+  	var query = sequelize.query('SELECT * FROM booth where event_id = ' + req.body.eventId).success(function(rows){
       
 	  console.log('\na\na\nPRINTING ROWS\na\n');
 	  console.log(rows);

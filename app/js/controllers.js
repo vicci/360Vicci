@@ -91,7 +91,7 @@ vicciappControllers.controller('merchController', ['$scope', '$routeParams', '$h
   function($scope, $routeParams, $http) {
     $http({method: 'POST', url: 'http://www.getvicci.com/node/merch', data:{'eventId': $routeParams.eventId}}).success(function(data) {
       $scope.eventId = $routeParams.eventId;
-      $scope.merchandise = data.categories;
+      $scope.merchandise = data;
     });
     $scope.pageTitle = 'Merchandise.';
 //    $scope.nextURL = getNextURL($scope.eventId, $scope.merchandise)
