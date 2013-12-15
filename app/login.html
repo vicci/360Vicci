@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <title>Login to Vicci</title>
   <link rel="stylesheet" href="css/app.css">
-  <link rel="stylesheet" href="css/bootstrap.css">
+  <!-- <link rel="stylesheet" href="css/bootstrap.css"> -->
   <script src="lib/angular/angular.js"></script>
   <script src="js/controllers.js"></script>
 
@@ -19,7 +19,8 @@
   </script>
 
 </head>
-<body ng-controller="loginController">
+<!-- <body ng-controller="loginController"> -->
+<body>
 
 <!--   <header>
   <button>logoff</button>
@@ -30,16 +31,35 @@
 
       <h2> Welcome to Vicci </h3>
       <h4> Log in to manage merch like a boss. </h4>
-      <input type = "text" ng-model = "username"/>
+<!--       <input type = "text" ng-model = "username"/>
       <p> {{username}} </p>
       <br>
       <br>
       <input type = "text" ng-model = "password"/>
       <p> {{password}} </p>
-      <br>
-      <button type="button" ng-click = "verifyInput()">Sign In</button>
+      <br> -->
+      <form name="loginForm" ng-controller = "loginController">
+        Email: <input type="email" name="emailText" ng-model="userEmail" required>
 
-      <button type="button" onclick="alert('Hello world!')">Sign Up</button>
+        <span class = "error" ng-show="loginForm.emailText.$error.required"> Required!</span>
+
+        <span class = "error" ng-show="loginForm.emailText.$error.email"> Not a valid email!</span>
+
+        Password: <input type="password" ng-minlength = 3 name="passwordText" ng-model = "password" required>
+
+        <span class = "error" ng-show="loginForm.passwordText.$error.required"> Required!</span>
+
+        <span class = "error" ng-show="loginForm.passwordText.$error.password"> Not a valid password!</span>
+
+        <tt>userEmail = {{userEmail}}</tt><br/>
+        <tt>loginForm.emailText.$valid = {{loginForm.emailText.$valid}}</tt><br/>
+        <tt>loginForm.$valid = {{loginForm.$valid}}</tt><br/>
+        <tt>loginForm.$error.required = {{!!myForm.$error.required}}</tt><br/>
+        <tt>myForm.$error.email = {{!!loginForm.$error.email}}</tt><br/>
+
+        <button type="button" ng-click = "verifyInput()">Sign In</button>
+
+        <button type="button" onclick="alert('Hello world!')">Sign Up</button>
       <!-- <div class="entity-wrapper"> -->
 <!--         <ul>
           <li class="entity-li" ng-repeat="artist in viewableArtists">

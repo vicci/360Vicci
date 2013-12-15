@@ -192,11 +192,12 @@ vicciappControllers.controller('eventController', ['$scope', '$routeParams', '$h
     $scope.artistId = $routeParams.artistId;
 }]);
 
-/*artistManager.controller('loginController', function($scope){
+//artistManager.controller('loginController', function($scope){
 //artistManager.controller('loginController', function($scope){
 vicciappControllers.controller('loginController', function($scope){
   $scope.username = "Enter Email";
   $scope.password = "Password";
+  $scope.userEmail = "me@example.com";
 
   $scope.verifyInput = function(){
     //if input is good i.e. email address and 
@@ -219,7 +220,7 @@ vicciappControllers.controller('loginController', function($scope){
     //var re = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     return re.test(email);
   }
-});*/
+});
 
 function validateEmail(email) {
   var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
