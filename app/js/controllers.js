@@ -132,7 +132,7 @@ vicciappControllers.controller('eventController', ['$scope', '$routeParams', '$h
    $scope.addEvent = function() {
     $http({method: 'PUT', url: 'http://www.getvicci.com/node/events', data:{
       'artistId': $routeParams.artistId,
-      'title': $scope.form.title,
+      'title': $scope.form.eventTitle,
       'description': $scope.form.description,
       'address': $scope.form.address,
       'image': $scope.form.eventImg,
