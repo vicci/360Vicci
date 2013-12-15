@@ -22,18 +22,45 @@ $scope.uploadFile = function((files) {
     }).success( ...all right!... ).error( ..damn!... );
 
 });*/
+function artistAdd($scope) {
+  console.log("artistAdd function");
+};
+vicciappControllers.controller('artistAddController', ['$scope',
+function($scope) {
+  console.log("artistAddController");
+  var master = {
+    artistName: '',
+    artistImg: ''
+  };
+  $scope.addArtist = function() {
+    master = $scope.form;
+    console.log("saved");
+  }
+}]);
 
+
+/*function artistAddController($scope) {
+  var master = {
+    artistName: '',
+    artistImg: ''
+  };
+
+  $scope.addArtist = function() {
+    master = $scope.form;
+    console.log("saved");
+  }
+}*/
 
 /*
 NOTE TO SELVES. TRYING TO FIGURE OUT THE CLOSINGS PROPERLY FOR UPLOADING FILES...
 http://jsfiddle.net/vishalvasani/4hqVu/
 */
-/*vicciappControllers.controller('alphatestController', ['$scope', '$routeParams', '$http',
+vicciappControllers.controller('alphatestController', ['$scope', '$routeParams', '$http',
 function($scope, $routeParams, $http){
     console.log("hello there");
-}]
 $scope.pageTitle = 'alpha testing'
-  $scope.uploadFile = function(element) {
+}
+  /*$scope.uploadFile = function(element) {
     $scope.$apply(function(scope) {
       console.log("inside the scope.apply function stuff.");
       $scope.files = [];
@@ -41,9 +68,9 @@ $scope.pageTitle = 'alpha testing'
         $scope.files.push(element.files[i])
       }
     })
-  }
+  }*/
   
-);*/
+]);
 
 
 
