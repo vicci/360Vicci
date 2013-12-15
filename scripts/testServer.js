@@ -49,7 +49,15 @@ app.options('/events', function(req, res) {
     
     res.send(200);
 });
-app.options('/catagories', function(req, res) {
+app.options('/categories', function(req, res) {
+    	
+	res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'content-type, Content-Length, Authorization, Origin, Accept')
+    
+    res.send(200);
+});
+app.options('/products', function(req, res) {
     	
 	res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
@@ -126,6 +134,30 @@ app.put('/categories', function(req, res) {
 		})
 		.error(function(err) {
 			console.log('Error adding category into database:');
+			console.log(err);
+			res.send(500);
+		});
+	
+});
+
+app.post('/products', function(req, res) {
+  		
+  	var query = sequelize.query('SELECT * FROM product where booth_id = ' + req.body.boothId)
+		.success(function(rows){
+	  	  	res.send(rows);
+    	}).error(function(err) {
+      	  	console.log('ERROR: ' + err);
+    	});
+})
+
+app.put('/products', function(req, res) {
+
+	var query = sequelize.query('INSERT INTO product(product_sku, title, description, image, booth_id, size, price, weight) VALUES (\'' + req.body.productSKU + '\',  \'' + req.body.title + '\',  \'' + req.body.description + '\', \'' + req.body.image + '\',' + req.body.boothId + ',  \'' + req.body.size + '\',' + req.body.price + ', ' + req.body.weight + ')')
+		.success(function() {
+			console.log('added product into database');
+		})
+		.error(function(err) {
+			console.log('Error adding product into database:');
 			console.log(err);
 			res.send(500);
 		});
