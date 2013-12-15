@@ -18,7 +18,7 @@
       <label>Prices</label>
       <input type="text" ng-model="productPrices" required/>
       <label>weight</label>
-      <input type="number" ng-model="productWeight" required/>
+      <input type="text" ng-model="productWeight" required/>
 	  <button ng-click='addProduct()'>Add Product</button>
     </form>
   </div>
@@ -32,7 +32,7 @@
             <a href="http://www.google.com" style="background:url({{item.image}}) no-repeat center; -webkit-backgroung-size:cover;
 				-moz-background-size:cover; -o-background-size:cover; background-size:cover;">
               <div class='entity-banner'>
-                <h4>{{item.name}}[{{item.size}}] - ${{item.price}}</h4>
+                <h4>{{item.title}}[{{item.size}}] - ${{item.price}}</h4>
               </div>
             </a>
           </li>
