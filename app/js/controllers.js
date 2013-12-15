@@ -117,8 +117,8 @@ vicciappControllers.controller('merchController', ['$scope', '$routeParams', '$h
 //    $scope.nextURL = getNextURL($scope.eventId, $scope.merchandise)
   }]);
 
-vicciappControllers.controller('eventController', function($scope, $http) {
-
+vicciappControllers.controller('eventController', ['$scope', '$routeParams', '$http',
+  function($scope, $http) {
 /*
 this.api_eventList = "http://api.getvicci.com/api/event/event_details";
 this.lastEventListUpdate ='';
@@ -136,29 +136,24 @@ error: function(e) {
 });
 console.log($scope.viewableEvents);
 */
-
-/*$http.post('http://api.getvicci.com/api/event/event_lists', {lastUpdatedTime: ''}).success(function(data) {
-  $scope.viewableEvents = data.events ;
-  });*/
-  $http({method: 'GET', url: 'http://www.getvicci.com/node'}).
+  $http({method: 'POST', url: 'http://www.getvicci.com/node/events', data:{'artistId': $routeParams.artistId}}).
         success(function(data, status, headers, config) {
-			console.log('ANGULAR CALLING NODE SUCCESS');
-            console.log(data);
-			$scope.viewableEvents = data;
+			    console.log('ANGULAR CALLING NODE SUCCESS');
+          console.log(data);
+			    $scope.viewableEvents = data;
         }).
         error(function(data, status, headers, config) {
-			console.log('ANGULAR ERROR CALLING GETVICCI.COM/NODE');
-          // called asynchronously if an error occurs
-          // or server returns response with an error status.
+			  console.log('ANGULAR ERROR CALLING GETVICCI.COM/NODE');
         });
 
     /*$http.get('data/events-00.json').success(function(data) {
           $scope.viewableEvents = data.events;
     });*/
     $scope.pageTitle = "Events.";
+    $scope.artistId = $routeParams.artistId;
 
       
-});
+}]);
 
 /*artistManager.controller('loginController', function($scope){
 //artistManager.controller('loginController', function($scope){
