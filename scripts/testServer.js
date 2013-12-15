@@ -95,7 +95,7 @@ app.post('/events', function(req, res) {
 
 app.put('/events', function(req, res){
 	
-	var query = sequelize.query('')
+	var query = sequelize.query('INSERT INTO event(title, description, address, image, latitude, longitude, start_date, end_date, status, access_code, enable_verification, radius, artist_id) VALUES (\'' + req.body.title + '\', \'' + req.body.description + '\', \'' + req.body.address + '\', \'' + req.body.image + '\', \'' + req.body.latitude + '\', \'' + req.body.longitude + '\', \'' + req.body.startDate + '\', \'' + req.body.endDate + '\', ' + req.body.status + ', \'' + req.body.accessCode + '\', ' + req.body.enableVerification +', ' + req.body.radius +', ' + req.body.artistId + ')')
 	.success(function(){
 		console.log('adding event into database');
 	})
