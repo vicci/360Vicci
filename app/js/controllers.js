@@ -88,7 +88,8 @@ vicciappControllers.controller('artistController', ['$scope', '$http',
 
 vicciappControllers.controller('productsController', ['$scope', '$routeParams', '$http',
   function($scope, $routeParams, $http) {
-    $http({method: 'POST', url:'http://www.getvicci.com/node/products', data:{'categoryId': $routeParams.categoryId}}).success(function(Data) {
+    $http({method: 'POST', url:'http://www.getvicci.com/node/products', data:{'categoryId': $routeParams.categoryId}})
+      .success(function(data) {
       console.log("ANGULAR SUCCESS calling getvicci.com/products");
       $scope.products = data;
     }).
