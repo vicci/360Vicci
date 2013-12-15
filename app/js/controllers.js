@@ -121,14 +121,16 @@ vicciappControllers.controller('eventController', ['$scope', '$routeParams', '$h
   function($scope, $http) {
     $http({method: 'POST', url: 'http://www.getvicci.com/node/events', data:{'artistId': $routeParams.artistId}}).
       success(function(data, status, headers, config) {
-		    console.log('ANGULAR CALLING NODE SUCCESS');
+		console.log('ANGULAR CALLING NODE GETTING EVENTS SUCCESS');
         console.log(data);
-		    $scope.viewableEvents = data;
+		$scope.viewableEvents = data;
       }).
       error(function(data, status, headers, config) {
 		    console.log('ANGULAR ERROR CALLING GETVICCI.COM/NODE');
       });
  
+	  console.log('Inside event controller');
+	  
    $scope.addEvent = function() {
     $http({method: 'PUT', url: 'http://www.getvicci.com/node/events', data:{
       'artistId': $routeParams.artistId,
