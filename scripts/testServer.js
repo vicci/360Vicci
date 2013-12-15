@@ -49,7 +49,7 @@ app.options('/events', function(req, res) {
     
     res.send(200);
 });
-app.options('/merch', function(req, res) {
+app.options('/catagories', function(req, res) {
     	
 	res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
@@ -102,12 +102,13 @@ app.put('/events', function(req, res){
 	.error(function(err){
 		console.log('Error adding event into database:');
 		console.log(err);
+		res.send(500);
 	});
 	
 });
 
 
-app.post('/merch', function(req, res) {
+app.post('/catagories', function(req, res) {
   		
   	var query = sequelize.query('SELECT * FROM booth where event_id = ' + req.body.eventId)
 		.success(function(rows){
@@ -116,6 +117,20 @@ app.post('/merch', function(req, res) {
       	  	console.log('ERROR: ' + err);
     	});
 })
+
+app.put('/catagories', function(req, res) {
+
+	var query = sequelize.query('INSERT INTO booth(event_id, name, image) VALUES (' + req.body.eventId + ',\'' + req.body.name + '\',\'' + req.body.image + '\')')
+		.success(function() {
+			console.log('added catagory into database');
+		})
+		.error(function(err) {
+			console.log('Error adding catagory into database:');
+			console.log(err);
+			res.send(500);
+		});
+	
+});
 
 
 
