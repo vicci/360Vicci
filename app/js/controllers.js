@@ -93,7 +93,7 @@ vicciappControllers.controller('productsController', ['$scope', '$routeParams', 
       console.log("ANGULAR SUCCESS calling getvicci.com/products");
       $scope.products = data;
     }).
-    error(function(Data, status, headers, config) {
+    error(function(data, status, headers, config) {
       console.log("ANGULAR ERROR CALLING getvicci.com/products");
     });
     $scope.pageTitle = "Products";
@@ -107,7 +107,7 @@ vicciappControllers.controller('productsController', ['$scope', '$routeParams', 
         'size': $scope.form.productSizes,
         'price': $scope.form.productPrices,
         'weight': $scope.form.productWeight
-      }}).success(function(Data, status, headers, config) {
+      }}).success(function(data, status, headers, config) {
         console.log("successfully added PRODUCT into DB");
         console.log("this is data: ");
         console.log(data);
@@ -119,17 +119,6 @@ vicciappControllers.controller('productsController', ['$scope', '$routeParams', 
     $scope.categoryId = $routeParams.categoryId;
 }]);
 
-
-function findCategory(categories, categoryId) {
-  for (var i = 0, len = categories.length ; i < len ; i++)
-  {
-    if(categories[i].categoryId == categoryId)
-    {
-      console.log(categories[i].items);
-      return categories[i].items;
-    }
-  }
-}
 
 vicciappControllers.controller('categoriesController', ['$scope', '$routeParams', '$http',
   function($scope, $routeParams, $http) {
