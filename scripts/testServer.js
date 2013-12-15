@@ -26,37 +26,53 @@ app.configure(function() {
 })
 
 app.options('/', function(req, res) {
-    
-	console.log('\na\naGOT INTO OPTIONS \"node/\"\na\na');
-	
+    	
 	res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
     res.header('Access-Control-Allow-Headers', 'content-type, Content-Length, Authorization, Origin, Accept')
     
-      res.send(200);
+    res.send(200);
+});
+app.options('/artists', function(req, res) {
+    	
+	res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'content-type, Content-Length, Authorization, Origin, Accept')
+    
+    res.send(200);
+});
+app.options('/events', function(req, res) {
+    	
+	res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'content-type, Content-Length, Authorization, Origin, Accept')
+    
+    res.send(200);
+});
+app.options('/merch', function(req, res) {
+    	
+	res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'content-type, Content-Length, Authorization, Origin, Accept')
+    
+    res.send(200);
 });
 
 app.get('/artists', function(req, res) {
-	
-	console.log('\na\na\n Got into GET\"node/\"');
-  		
+	  		
   var query = sequelize.query('SELECT * FROM artist').success(function(rows){
-      
-	  console.log('\na\na\nPRINTING ROWS\na\n');
-	  console.log(rows);
-	  res.send(rows);
+   	  res.send(rows);
     }).error(function(err) {
       console.log('I AM AN ERROR: ' + err);
     });
+	
 })
 
 app.put('/artists', function(req, res) {
-	console.log('\na\naGot into PUT artists');
 	
 	var query = sequelize.query('insert into artist (name, image) values (\'' + req.body.artistName + '\', \'' + req.body.artistImage + '\')')
-		.success(function(rows) {
-			console.log('adding artists into table');
-			console.log('this is rows: '+rows);
+		.success(function() {
+			console.log('adding artist into table');
 			res.send(200);					
 		}).error(function(err) {
 			console.log('Error adding artist to database: \n');
@@ -66,17 +82,39 @@ app.put('/artists', function(req, res) {
 	
 });
 
+app.post('/events', function(req, res) {
+	
+	var query = sequelize.query('SELECT * FROM event where artist_id = ' + req.body.artistId)
+	.success(function(rows) {
+		res.send(rows);
+	}).error(function(err) {
+		console.log('ERROR: ' + err);
+	});
+	
+});
+
+app.put('/events', function(req, res){
+	
+	var query = sequelize.query('')
+	.success(function(){
+		console.log('adding event into database');
+	})
+	.error(function(err){
+		console.log('Error adding event into database:');
+		console.log(err);
+	});
+	
+});
+
 
 app.post('/merch', function(req, res) {
   		
-  	var query = sequelize.query('SELECT * FROM booth where event_id = ' + req.body.eventId).success(function(rows){
-      
-	  console.log('\na\na\nPRINTING ROWS\na\n');
-	  console.log(rows);
-	  res.send(rows);
-    }).error(function(err) {
-      console.log('I AM AN ERROR: ' + err);
-    });
+  	var query = sequelize.query('SELECT * FROM booth where event_id = ' + req.body.eventId)
+		.success(function(rows){
+	  	  	res.send(rows);
+    	}).error(function(err) {
+      	  	console.log('ERROR: ' + err);
+    	});
 })
 
 
