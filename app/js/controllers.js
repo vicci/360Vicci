@@ -119,32 +119,40 @@ vicciappControllers.controller('merchController', ['$scope', '$routeParams', '$h
 
 vicciappControllers.controller('eventController', ['$scope', '$routeParams', '$http',
   function($scope, $http) {
-/*
-this.api_eventList = "http://api.getvicci.com/api/event/event_details";
-this.lastEventListUpdate ='';
-$.ajax({
-type: 'POST',
-data: {eventId: '61', lastUpdatedTime: this.lastEventListUpdate},
-url: this.api_eventList,
-success: function(json) {
-$scope.viewableEvents = json.events;
-console.log(JSON.stringify(json));
-},
-error: function(e) {
-  console.log(e.message);
-}
-});
-console.log($scope.viewableEvents);
-*/
-  $http({method: 'POST', url: 'http://www.getvicci.com/node/events', data:{'artistId': $routeParams.artistId}}).
-        success(function(data, status, headers, config) {
-			    console.log('ANGULAR CALLING NODE SUCCESS');
-          console.log(data);
-			    $scope.viewableEvents = data;
-        }).
-        error(function(data, status, headers, config) {
-			  console.log('ANGULAR ERROR CALLING GETVICCI.COM/NODE');
-        });
+    $http({method: 'POST', url: 'http://www.getvicci.com/node/events', data:{'artistId': $routeParams.artistId}}).
+      success(function(data, status, headers, config) {
+		    console.log('ANGULAR CALLING NODE SUCCESS');
+        console.log(data);
+		    $scope.viewableEvents = data;
+      }).
+      error(function(data, status, headers, config) {
+		    console.log('ANGULAR ERROR CALLING GETVICCI.COM/NODE');
+      });
+ 
+   $scope.addEvent = function() {
+    $http({method: 'PUT', url: 'http://www.getvicci.com/node/events', data:{
+      'artistId': $routeParams.artistId,
+      'title': $scope.form.title,
+      'description': $scope.form.description,
+      'address': $scope.form.address,
+      'image': $scope.form.eventImg,
+      'latitude': $scope.form.latitude,
+      'longitude': $scope.form.longitude,
+      'startDate': $scope.form.startDate,
+      'endDate': $scope.form.endDate,
+      'status': $scope.form.status,
+      'accessCode': $scope.form.accessCode,
+      'enableVerification': $scope.form.enableGeo,
+      'radius': $scope.form.radius,
+    }}.success(function(data, status, headers, config) {
+      console.log("successfully added event into DB");
+      console.log("this is data: ");
+      console.log(data);
+    }).error(function(err) {
+      console.log("error doing put for event");
+      console.log(err);
+    });
+  });
 
     /*$http.get('data/events-00.json').success(function(data) {
           $scope.viewableEvents = data.events;

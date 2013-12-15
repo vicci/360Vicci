@@ -7,6 +7,8 @@
     <input type="text" ng-model="form.eventTitle" required/>
     <label>Image URL:</label>
     <input type="url" name="picURL" ng-model="form.eventImg" placeholder="http://"required/>
+    <label>Description:</label>
+    <input type="text" ng-model="form.description" />
     <label>Address</label>
     <input type="text" ng-model="form.address" required/>
     <label>Start Date</label>
@@ -19,7 +21,13 @@
     <input type="number" ng-model="form.radius" required/>
     <label>Enable Geolocation</label>
     <input type="checkbox" ng-model="form.enableGeo" />
-    <button ng-click="addArtist()">Add Artist</button>
+    <label>latitude</label>
+    <input type="text" ng-model="form.latitude" />
+    <label>longitude</label>
+    <input type="text" ng-model="form.longitude" />
+    <label>status</label>
+    <input type="number" ng-model="form.status" />
+    <button ng-click="addEvent()">Add Artist</button>
     </form>
   </div>
 
