@@ -1,0 +1,48 @@
+<div>
+  <header>
+  <button>logoff</button>
+  </header>
+
+  <div class="content-wrapper">
+    <form name="newProduct">
+      <label>product_sku</label>
+      <input type="text" ng-model="productSKU" required/>
+      <label>Title</label>
+      <input type="text" ng-model="productTitle" required/>
+      <label>Description</label>
+      <input type="text" ng-model="productDescription" required/>
+      <label>Image</label>
+      <input type="text" ng-model="productImage" required/>
+      <label>Size</label>
+      <input type="text" ng-model="productSizes" required/>
+      <label>Prices</label>
+      <input type="text" ng-model="productPrices" required/>
+      <label>weight</label>
+      <input type="number" ng-model="productWeight" required/>
+    </form>
+  </div>
+
+  <div class='content-wrapper'>
+      <h1 class='title'>{{pageTitle}}</h1>
+
+      <div class="entity-wrapper">
+        <ul>
+          <li class="entity-li" ng-repeat="item in products">
+            <a href="http://www.google.com" style="background:url({{item.image}}) no-repeat center; -webkit-backgroung-size:cover;
+				-moz-background-size:cover; -o-background-size:cover; background-size:cover;">
+              <div class='entity-banner'>
+                <h4>{{item.name}}[{{item.size}}] - ${{item.price}}</h4>
+              </div>
+            </a>
+          </li>
+          <li class="entity-add" >
+				<a href="#" style="background:url(http://www.emilyplus1.com/wp-content/uploads/2013/11/plus-sign-clip-art1.png) no-repeat center; -webkit-backgroung-size:cover;
+				-moz-background-size:cover; -o-background-size:cover; background-size:cover;">
+				</a>
+
+          </li>
+        </ul>
+      </div>
+  </div>
+
+</div>

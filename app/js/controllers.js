@@ -86,14 +86,37 @@ vicciappControllers.controller('artistController', ['$scope', '$http',
 }]);
 */
 
-vicciappControllers.controller('merchDetailsController', ['$scope', '$routeParams', '$http',
+vicciappControllers.controller('productsController', ['$scope', '$routeParams', '$http',
   function($scope, $routeParams, $http) {
-    $http.get('data/' + $routeParams.eventId + '.json').success(function(data) {
-      $scope.items = findCategory(data.categories, $routeParams.categoryId); //data.categories;
+    $http({method: 'POST', url:'http://www.getvicci.com/node/products', data:{'categoryId': $routeParams.categoryId}}).success(function(Data) {
+      console.log("ANGULAR SUCCESS calling getvicci.com/product");
+      $scope.products = data;
+    }).
+    error(function(Data, status, headers, config) {
+      console.log("ANGULAR ERROR CALLING getvicci.com/products");
+    });
+    $scope.pageTitle = "Products";
+    $scope.addProduct = function() {
+      $http({method: 'PUT', url: 'http://www.getvicci.com/node/categorie', data: {
+        'title': $scope.form.productTitle,
+        'description': $scope.form.productDescription,
+        'product_sku': $scope.form.productSKU,
+        'image': $scope.form.productImage,
+        'booth_id': $routeParams.categoryId,
+        'size': $scope.form.productSizes,
+        'price': $scope.form.productPrices,
+        'weight': $scope.form.productWeight
+      }}).success(function(Data, status, headers, config) {
+        console.log("successfully added PRODUCT into DB");
+        console.log("this is data: ");
+        console.log(data);
+      }).error(function(err) {
+        console.log("error doing PUT for PRODUCTS");
+        console.log(err);
       });
-    console.log($routeParams.category);
-    $scope.pageTitle = $routeParams.category;
-  }]);
+    };
+    $scope.categoryId = $routeParams.categoryId;
+}]);
 
 
 function findCategory(categories, categoryId) {

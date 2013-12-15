@@ -22,9 +22,9 @@ vicciApp.config(['$routeProvider',
         templateUrl: 'partials/categories.html',
         controller: 'categoriesController'
       }).
-      when('/details/:artistId/:eventId/:category/:categoryId', {
-        templateUrl: 'partials/merch-details.html',
-        controller: 'merchDetailsController'
+      when('/products/:categoryId', {
+        templateUrl: 'partials/products.html',
+        controller: 'productsController'
       }).
       when('/alphatest', {
         templateUrl: 'partials/alphatest.html',
