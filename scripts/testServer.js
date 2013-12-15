@@ -108,7 +108,7 @@ app.put('/events', function(req, res){
 });
 
 
-app.post('/catagories', function(req, res) {
+app.post('/categories', function(req, res) {
   		
   	var query = sequelize.query('SELECT * FROM booth where event_id = ' + req.body.eventId)
 		.success(function(rows){
@@ -118,14 +118,14 @@ app.post('/catagories', function(req, res) {
     	});
 })
 
-app.put('/catagories', function(req, res) {
+app.put('/categories', function(req, res) {
 
 	var query = sequelize.query('INSERT INTO booth(event_id, name, image) VALUES (' + req.body.eventId + ',\'' + req.body.name + '\',\'' + req.body.image + '\')')
 		.success(function() {
-			console.log('added catagory into database');
+			console.log('added category into database');
 		})
 		.error(function(err) {
-			console.log('Error adding catagory into database:');
+			console.log('Error adding category into database:');
 			console.log(err);
 			res.send(500);
 		});
