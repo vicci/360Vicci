@@ -45,26 +45,22 @@ $scope.pageTitle = 'alpha testing'
   
 );*/
 
-vicciappControllers.controller('artistAddController', ['$scope',
-  function($scope) {
-    console.log("artistAddController");
-	var master = {
-      artistName: '',
-      artistImg: ''
-    };
-    $scope.addArtist = function() {
-      master = $scope.form;
-	  console.log('saved');
-    }
-  }]);
-
-
 
 vicciappControllers.controller('artistController', ['$scope', '$http',
   function($scope, $http) {
     $http.get('data/artists.json').success(function(data) {
       $scope.viewableArtists = data;
     });
+    var master = {
+      artistName: '',
+      artistImg: ''
+    };
+    $scope.addArtist = function() {
+      master = $scope.form;
+      console.log("saved");
+      console.log("master after:");
+      console.log(master);
+    }
 
     $scope.pageTitle = 'Artists.';
   }]);

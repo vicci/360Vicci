@@ -2,15 +2,14 @@
   <header>
   <button>logoff</button>
   </header>
-  <div class="entity-wrapper" ng-controller="artistAddController">
-        <form name="newArtist">
-        <label>Client Name:</label>
-        <input type="text" ng-model="form.artistName" required/>
-        <label>URL:</label>
-        <input type="url" name="picURL" ng-model="form.artistImg" placeholder="http://"required/>
-        <br>
-       <button ng-click="addArtist()">Add Artist</button>
-      </form>
+  <div class="content-wrapper">
+    <form name="newArtist">
+    <label>Client Name:</label>
+    <input type="text" ng-model="form.artistName" required/>
+    <label>URL:</label>
+    <input type="url" name="picURL" ng-model="form.artistImg" placeholder="http://"required/>
+    <button ng-click="addArtist()">Add Artist</button>
+    </form>
   </div>
 
   <div class='content-wrapper'>
