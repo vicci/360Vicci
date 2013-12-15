@@ -142,7 +142,7 @@ app.put('/categories', function(req, res) {
 
 app.post('/products', function(req, res) {
   		
-  	var query = sequelize.query('SELECT * FROM product where booth_id = ' + req.body.boothId)
+  	var query = sequelize.query('SELECT * FROM product where booth_id = ' + req.body.categoryId)
 		.success(function(rows){
 	  	  	res.send(rows);
     	}).error(function(err) {

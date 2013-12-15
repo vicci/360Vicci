@@ -89,7 +89,7 @@ vicciappControllers.controller('artistController', ['$scope', '$http',
 vicciappControllers.controller('productsController', ['$scope', '$routeParams', '$http',
   function($scope, $routeParams, $http) {
     $http({method: 'POST', url:'http://www.getvicci.com/node/products', data:{'categoryId': $routeParams.categoryId}}).success(function(Data) {
-      console.log("ANGULAR SUCCESS calling getvicci.com/product");
+      console.log("ANGULAR SUCCESS calling getvicci.com/products");
       $scope.products = data;
     }).
     error(function(Data, status, headers, config) {
@@ -97,12 +97,12 @@ vicciappControllers.controller('productsController', ['$scope', '$routeParams', 
     });
     $scope.pageTitle = "Products";
     $scope.addProduct = function() {
-      $http({method: 'PUT', url: 'http://www.getvicci.com/node/categorie', data: {
+      $http({method: 'PUT', url: 'http://www.getvicci.com/node/products', data: {
         'title': $scope.form.productTitle,
         'description': $scope.form.productDescription,
-        'product_sku': $scope.form.productSKU,
+        'productSKU': $scope.form.productSKU,
         'image': $scope.form.productImage,
-        'booth_id': $routeParams.categoryId,
+        'boothId': $routeParams.categoryId,
         'size': $scope.form.productSizes,
         'price': $scope.form.productPrices,
         'weight': $scope.form.productWeight
