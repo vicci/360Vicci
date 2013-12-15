@@ -14,43 +14,40 @@ var sequelize = new Sequelize('api_test', 'api', 'V4f23k4uEI2J8R1L14KF', {
 
 var app = express()
 var clientDir = path.join(__dirname, '../app')
-var allowXDomain = function(req, res, next) {
-  console.log("function allowXDomain")
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-  res.header('Access-Control-Allow-Headers', 'content-type, Content-Length, Authorization, Origin, Accept')
-  if(req.method === 'OPTIONS')
-  {
-    res.send(200);
-  }
-  else
-  {
-    next();
-  }
-};
+
 
 app.configure(function() {
+	
   app.set('port', 1337)
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(app.router)
   app.use(express.static(clientDir))
-  app.use(allowXDomain);
 })
 
 app.get('/', function(req, res) {
-
-  console.log(sequelize);
-		
+	
+	console.log('\na\na\n Got into \"node/\"');
+	
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'content-type, Content-Length, Authorization, Origin, Accept')
+  if(req.method === 'OPTIONS')
+  {
+	  console.log('\na\nWe made it into options method\na\na');
+    res.send(200);
+  } else if(req.method === 'GET') {
+	  console.log('\na\na\nWe made it into the GET method check');
+  }
+  		
   var query = sequelize.query('SELECT * FROM event').success(function(rows){
-
-      //console.log(rows);
+      
+	  console.log('\na\na\nPRINTING ROWS\na\n');
+	  console.log(rows);
+	  res.send(rows);
     }).error(function(err) {
       console.log('I AM AN ERROR: ' + err);
     });
-          console.log('\noutside the sequelize query');
-    console.log(query)
-  return "<html><body><h1>Hi</h1></body></html>"
 })
 
 

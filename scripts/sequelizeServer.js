@@ -5,8 +5,8 @@ var http = require('http');
 var path = require('path');
 
 var sequelize = new Sequelize('testingviccinew', 'root', 'FFBEsyAI', {
-	host: 'localhost',
-	port: 8888
+	host: '127.0.0.1',
+	port: 3306
 });
 
 
@@ -20,10 +20,8 @@ app.configure(function() {
 })
 
 app.get('/', function(req, res) {
-	
-	console.log('\n\nI am going to try querying first, and then serve up the page afterwards\n\n');
-	
-    var query = sequelize.query('SELECT * FROM test.clothes').success(function(rows){
+		
+    var query = sequelize.query('SELECT * FROM event').success(function(rows){
     	console.log('\nI am about to print rows:');
 		console.log(rows);
     }).error(function(err) {

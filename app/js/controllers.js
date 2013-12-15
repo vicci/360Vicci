@@ -122,16 +122,19 @@ console.log($scope.viewableEvents);
   });*/
   $http({method: 'GET', url: 'http://www.getvicci.com/node'}).
         success(function(data, status, headers, config) {
-          console.log(data)
+			console.log('ANGULAR CALLING NODE SUCCESS');
+            console.log(data);
+			$scope.viewableEvents = data.events;
         }).
         error(function(data, status, headers, config) {
+			console.log('ANGULAR ERROR CALLING GETVICCI.COM/NODE');
           // called asynchronously if an error occurs
           // or server returns response with an error status.
         });
 
-    $http.get('data/events-00.json').success(function(data) {
+    /*$http.get('data/events-00.json').success(function(data) {
           $scope.viewableEvents = data.events;
-    });
+    });*/
     $scope.pageTitle = "Events.";
 
       
