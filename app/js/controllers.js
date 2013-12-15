@@ -120,7 +120,7 @@ console.log($scope.viewableEvents);
 /*$http.post('http://api.getvicci.com/api/event/event_lists', {lastUpdatedTime: ''}).success(function(data) {
   $scope.viewableEvents = data.events ;
   });*/
-  $http({method: 'POST', url: 'http://www.getvicci.com/node'}).
+  $http({method: 'GET', url: 'http://www.getvicci.com/node'}).
         success(function(data, status, headers, config) {
 			console.log('ANGULAR CALLING NODE SUCCESS');
             console.log(data);
