@@ -118,7 +118,7 @@ vicciappControllers.controller('merchController', ['$scope', '$routeParams', '$h
   }]);
 
 vicciappControllers.controller('eventController', ['$scope', '$routeParams', '$http',
-  function($scope, $http) {
+  function($scope, $routeParams, $http) {
     $http({method: 'POST', url: 'http://www.getvicci.com/node/events', data:{'artistId': $routeParams.artistId}}).
       success(function(data, status, headers, config) {
 		console.log('ANGULAR CALLING NODE GETTING EVENTS SUCCESS');
