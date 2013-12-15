@@ -48,21 +48,33 @@ $scope.pageTitle = 'alpha testing'
 
 vicciappControllers.controller('artistController', ['$scope', '$http',
   function($scope, $http) {
-    $http.get('data/artists.json').success(function(data) {
-      $scope.viewableArtists = data;
-    });
-    var master = {
-      artistName: '',
-      artistImg: ''
-    };
+	  $http({method: 'GET', url: 'http://www.getvicci.com/node/artists'}).
+	        success(function(data, status, headers, config) {
+				console.log('ANGULAR CALLING NODE GETTING ARTISTS SUCCESS');
+	            console.log(data);
+				$scope.viewableArtists = data;
+	        }).
+	        error(function(data, status, headers, config) {
+				console.log('ANGULAR ERROR CALLING GETVICCI.COM/NODE/ARTISTS');
+	          // called asynchronously if an error occurs
+	          // or server returns response with an error status.
+	        });
+    
+    
     $scope.addArtist = function() {
-      master = $scope.form;
-      console.log("saved");
-      console.log("master after:");
-      console.log(master);
+		
+	    $http({method: 'PUT', url: 'http://www.getvicci.com/node/artists', data:{'artistName': $scope.form.artistName, 'artistImage': $scope.form.artistImg}})
+			.success(function(data) {
+				console.log('Successfully added artist into DB');
+				console.log('This is data: ' + data);
+			
+	    	}).error(function(err) {
+				console.log('Error doing PUT')
+	    		console.log(err);
+	    	});  
     }
 
-    $scope.pageTitle = 'Artists.';
+    $scope.pageTitle = 'Artists';
   }]);
 /*
 vicciappControllers.controller('artistController', ['$scope', '$http',

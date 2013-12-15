@@ -34,14 +34,13 @@ app.options('/', function(req, res) {
     res.header('Access-Control-Allow-Headers', 'content-type, Content-Length, Authorization, Origin, Accept')
     
       res.send(200);
-	
 });
 
-app.get('/', function(req, res) {
+app.get('/artists', function(req, res) {
 	
 	console.log('\na\na\n Got into GET\"node/\"');
   		
-  var query = sequelize.query('SELECT * FROM event').success(function(rows){
+  var query = sequelize.query('SELECT * FROM artist').success(function(rows){
       
 	  console.log('\na\na\nPRINTING ROWS\na\n');
 	  console.log(rows);
@@ -50,6 +49,22 @@ app.get('/', function(req, res) {
       console.log('I AM AN ERROR: ' + err);
     });
 })
+
+app.put('/artists', function(req, res) {
+	console.log('\na\naGot into PUT artists');
+	
+	var query = sequelize.query('insert into artist (name, image) values (\'' + req.body.artistName + '\', \'' + req.body.artistImage + '\')')
+		.success(function(rows) {
+			console.log('adding artists into table');
+			console.log('this is rows: '+rows);
+			res.send(200);					
+		}).error(function(err) {
+			console.log('Error adding artist to database: \n');
+			console.log(err);
+			res.send(500);
+		});
+	
+});
 
 
 app.post('/merch', function(req, res) {
