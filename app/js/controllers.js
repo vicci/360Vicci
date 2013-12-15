@@ -128,9 +128,7 @@ vicciappControllers.controller('eventController', ['$scope', '$routeParams', '$h
       error(function(data, status, headers, config) {
 		    console.log('ANGULAR ERROR CALLING GETVICCI.COM/NODE');
       });
- 
 	  console.log('Inside event controller');
-	  
    $scope.addEvent = function() {
     $http({method: 'PUT', url: 'http://www.getvicci.com/node/events', data:{
       'artistId': $routeParams.artistId,
@@ -146,7 +144,7 @@ vicciappControllers.controller('eventController', ['$scope', '$routeParams', '$h
       'accessCode': $scope.form.accessCode,
       'enableVerification': $scope.form.enableGeo,
       'radius': $scope.form.radius,
-    }}.success(function(data, status, headers, config) {
+    }}).success(function(data, status, headers, config) {
       console.log("successfully added event into DB");
       console.log("this is data: ");
       console.log(data);
@@ -154,15 +152,12 @@ vicciappControllers.controller('eventController', ['$scope', '$routeParams', '$h
       console.log("error doing put for event");
       console.log(err);
     });
-  });
-
+  };
     /*$http.get('data/events-00.json').success(function(data) {
           $scope.viewableEvents = data.events;
     });*/
     $scope.pageTitle = "Events.";
     $scope.artistId = $routeParams.artistId;
-
-      
 }]);
 
 /*artistManager.controller('loginController', function($scope){
