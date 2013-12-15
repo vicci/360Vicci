@@ -48,11 +48,13 @@ $scope.pageTitle = 'alpha testing'
 vicciappControllers.controller('artistAddController', ['$scope',
   function($scope) {
     console.log("artistAddController");
+	var master = {
       artistName: '',
       artistImg: ''
     };
     $scope.addArtist = function() {
       master = $scope.form;
+	  console.log('saved');
     }
   }]);
 
