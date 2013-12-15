@@ -22,46 +22,18 @@ $scope.uploadFile = function((files) {
     }).success( ...all right!... ).error( ..damn!... );
 
 });*/
-vicciappControllers.controller('artistAddController', ['$scope',
-function($scope) {
-  console.log("artistAddController");
-  var master = {
-    artistName: '',
-    artistImg: ''
-  };
-  $scope.addArtist = function() {
-    console.log("master before:");
-    console.log(master);
-    master = $scope.form;
-    console.log("saved");
-    console.log("master after");
-    console.log(master);
-  }
-}]);
 
-
-/*function artistAddController($scope) {
-  var master = {
-    artistName: '',
-    artistImg: ''
-  };
-
-  $scope.addArtist = function() {
-    master = $scope.form;
-    console.log("saved");
-  }
-}*/
 
 /*
 NOTE TO SELVES. TRYING TO FIGURE OUT THE CLOSINGS PROPERLY FOR UPLOADING FILES...
 http://jsfiddle.net/vishalvasani/4hqVu/
 */
-vicciappControllers.controller('alphatestController', ['$scope', '$routeParams', '$http',
+/*vicciappControllers.controller('alphatestController', ['$scope', '$routeParams', '$http',
 function($scope, $routeParams, $http){
     console.log("hello there");
+}]
 $scope.pageTitle = 'alpha testing'
-}
-  /*$scope.uploadFile = function(element) {
+  $scope.uploadFile = function(element) {
     $scope.$apply(function(scope) {
       console.log("inside the scope.apply function stuff.");
       $scope.files = [];
@@ -69,9 +41,9 @@ $scope.pageTitle = 'alpha testing'
         $scope.files.push(element.files[i])
       }
     })
-  }*/
+  }
   
-]);
+);*/
 
 
 
@@ -117,7 +89,7 @@ function findCategory(categories, categoryId) {
 
 vicciappControllers.controller('merchController', ['$scope', '$routeParams', '$http',
   function($scope, $routeParams, $http) {
-    $http.get('data/' + $routeParams.eventId + '.json').success(function(data) {
+    $http({method: 'POST', url: 'http://www.getvicci.com/node/merch', data:{'eventId': $routeParams.eventId}}).success(function(data) {
       $scope.eventId = $routeParams.eventId;
       $scope.merchandise = data.categories;
     });
@@ -148,11 +120,11 @@ console.log($scope.viewableEvents);
 /*$http.post('http://api.getvicci.com/api/event/event_lists', {lastUpdatedTime: ''}).success(function(data) {
   $scope.viewableEvents = data.events ;
   });*/
-  $http({method: 'GET', url: 'http://www.getvicci.com/node'}).
+  $http({method: 'POST', url: 'http://www.getvicci.com/node'}).
         success(function(data, status, headers, config) {
 			console.log('ANGULAR CALLING NODE SUCCESS');
             console.log(data);
-			$scope.viewableEvents = data.events;
+			$scope.viewableEvents = data;
         }).
         error(function(data, status, headers, config) {
 			console.log('ANGULAR ERROR CALLING GETVICCI.COM/NODE');

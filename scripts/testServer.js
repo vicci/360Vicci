@@ -25,22 +25,39 @@ app.configure(function() {
   app.use(express.static(clientDir))
 })
 
+app.options('/', function(req, res) {
+    
+	console.log('\na\naGOT INTO OPTIONS \"node/\"\na\na');
+	
+	res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'content-type, Content-Length, Authorization, Origin, Accept')
+    
+      res.send(200);
+	
+});
+
 app.get('/', function(req, res) {
 	
-	console.log('\na\na\n Got into \"node/\"');
-	
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-  res.header('Access-Control-Allow-Headers', 'content-type, Content-Length, Authorization, Origin, Accept')
-  if(req.method === 'OPTIONS')
-  {
-	  console.log('\na\nWe made it into options method\na\na');
-    res.send(200);
-  } else if(req.method === 'GET') {
-	  console.log('\na\na\nWe made it into the GET method check');
-  }
+	console.log('\na\na\n Got into GET\"node/\"');
   		
   var query = sequelize.query('SELECT * FROM event').success(function(rows){
+      
+	  console.log('\na\na\nPRINTING ROWS\na\n');
+	  console.log(rows);
+	  res.send(rows);
+    }).error(function(err) {
+      console.log('I AM AN ERROR: ' + err);
+    });
+})
+
+
+app.post('/merch', function(req, res) {
+	
+	console.log('\na\na\n Got into \"node/merch\"');
+	console.log(req);
+  		
+  	var query = sequelize.query('SELECT * FROM booth').success(function(rows){
       
 	  console.log('\na\na\nPRINTING ROWS\na\n');
 	  console.log(rows);

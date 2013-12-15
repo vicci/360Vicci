@@ -4,7 +4,7 @@ var Sequelize = require('sequelize');
 var http = require('http');
 var path = require('path');
 
-var sequelize = new Sequelize('testingviccinew', 'root', 'FFBEsyAI', {
+var sequelize = new Sequelize('test', 'root', 'FFBEsyAI', {
 	host: '127.0.0.1',
 	port: 3306
 });
@@ -21,7 +21,7 @@ app.configure(function() {
 
 app.get('/', function(req, res) {
 		
-    var query = sequelize.query('SELECT * FROM event').success(function(rows){
+    var query = sequelize.query('SELECT * FROM clothes').success(function(rows){
     	console.log('\nI am about to print rows:');
 		console.log(rows);
     }).error(function(err) {
