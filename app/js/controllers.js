@@ -50,11 +50,11 @@ vicciappControllers.controller('artistController', ['$scope', '$http',
   function($scope, $http) {
 	  $http({method: 'GET', url: 'http://www.getvicci.com/node/artists'}).
 	        success(function(data, status, headers, config) {
-          console.log("angular calling node getting artists success");
-				$scope.viewableArtists = data;
+            console.log("angular calling node getting artists success");
+				    $scope.viewableArtists = data;
 	        }).
 	        error(function(data, status, headers, config) {
-          console.log("angular error calling getvicci.com/node/artists");
+            console.log("angular error calling getvicci.com/node/artists");
 	          // called asynchronously if an error occurs
 	          // or server returns response with an error status.
 	        });
