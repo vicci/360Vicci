@@ -131,8 +131,9 @@ app.put('/events', function(req, res){
 });
 
 app.delete('/events', function(req, res) {
-	
-	var query = sequelize.query('delete from event where id =' + req.headers.eventId)
+
+	//eventid NOT eventId because the headers are automatically lowercased when sent over the wire
+	var query = sequelize.query('delete from event where id =' + req.headers.eventid)
 		.success(function() {
 			console.log('deleted event from table');
 			res.send(200);
@@ -170,7 +171,8 @@ app.put('/categories', function(req, res) {
 
 app.delete('/categories', function(req, res) {
 	
-	var query = sequelize.query('delete from booth where id =' + req.headers.categoryId)
+	//categoryid NOT categoryId because the headers are automatically lowercased when sent over the wire
+	var query = sequelize.query('delete from booth where id =' + req.headers.categoryid)
 		.success(function() {
 			console.log('deleted category from table');
 			res.send(200);
@@ -208,7 +210,8 @@ app.put('/products', function(req, res) {
 
 app.delete('/products', function(req, res) {
 	
-	var query = sequelize.query('delete from product where id =' + req.headers.productId)
+	//productid NOT productId because the headers are automatically lowercased when sent over the wire
+	var query = sequelize.query('delete from product where id =' + req.headers.productid)
 		.success(function() {
 			console.log('deleted product from table');
 			res.send(200);
