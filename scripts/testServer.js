@@ -80,7 +80,7 @@ app.put('/artists', function(req, res) {
 	
 	var query = sequelize.query('insert into artist (name, image) values (\'' + req.body.artistName + '\', \'' + req.body.artistImage + '\')')
 		.success(function() {
-			console.log('adding artist into table');
+			console.log('added artist into table');
 			res.send(200);					
 		}).error(function(err) {
 			console.log('Error adding artist to database: \n');
@@ -92,7 +92,8 @@ app.put('/artists', function(req, res) {
 
 app.delete('/artists', function(req, res) {
 	
-	var query = sequelize.query('delete from artist where id =' + req.body.artistId)
+	//artistid NOT artistId because the headers are automatically lowercased when sent over the wire
+	var query = sequelize.query('delete from artist where id = ' + req.headers.artistid)
 		.success(function() {
 			console.log('deleted artist from table');
 			res.send(200);

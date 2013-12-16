@@ -73,12 +73,15 @@ vicciappControllers.controller('artistController', ['$scope', '$http',
 	    		console.log(err);
 	    	});  
     }
+	
     $scope.deleteArtist = function(artistId) {
-      $http({method: 'DELETE', url: 'http://www.getvicci.com/node/artists', data:{'artistId': artistId}})
+
+		//artistid NOT artistId because the headers are automatically lowercased when sent over the wire
+      $http({method: 'DELETE', url: 'http://www.getvicci.com/node/artists', headers:{'artistid': artistId}})
       .success(function(data) {
         console.log("successffully deleted artist from DB");
         console.log("this is data: " + data);
-      }).error(function(err) {
+      }).error(function(err) {		
         console.log("error doing artist delete");
         console.log(err);
       });
@@ -106,6 +109,7 @@ vicciappControllers.controller('productsController', ['$scope', '$routeParams', 
     error(function(data, status, headers, config) {
       console.log("ANGULAR ERROR CALLING getvicci.com/products");
     });
+	
     $scope.pageTitle = "Products";
     $scope.addProduct = function() {
       $http({method: 'PUT', url: 'http://www.getvicci.com/node/products', data: {
