@@ -130,6 +130,18 @@ vicciappControllers.controller('productsController', ['$scope', '$routeParams', 
         console.log(err);
       });
     };
+    $scope.deleteArtist = function(productId) {
+
+		//artistid NOT artistId because the headers are automatically lowercased when sent over the wire
+      $http({method: 'DELETE', url: 'http://www.getvicci.com/node/products', headers:{'productid': productId}})
+      .success(function(data) {
+        console.log("successffully deleted product from DB");
+        console.log("this is data: " + data);
+      }).error(function(err) {		
+        console.log("error doing product delete");
+        console.log(err);
+      });
+    
     $scope.categoryId = $routeParams.categoryId;
 }]);
 
@@ -157,7 +169,18 @@ vicciappControllers.controller('categoriesController', ['$scope', '$routeParams'
       console.log("error doing PUT for CATEGORY");
       console.log(err);
     });
-  };
+   $scope.deleteCategory = function(categoryId) {
+
+		//artistid NOT artistId because the headers are automatically lowercased when sent over the wire
+      $http({method: 'DELETE', url: 'http://www.getvicci.com/node/categories', headers:{'categoryid':categoryId}})
+      .success(function(data) {
+        console.log("successffully deleted category from DB");
+        console.log("this is data: " + data);
+      }).error(function(err) {		
+        console.log("error doing category delete");
+        console.log(err);
+      });
+     };
   $scope.eventId = $routeParams.eventId;
 }]);
 
@@ -202,6 +225,17 @@ vicciappControllers.controller('eventController', ['$scope', '$routeParams', '$h
     /*$http.get('data/events-00.json').success(function(data) {
           $scope.viewableEvents = data.events;
     });*/
+    $scope.deleteEvent = function(eventId) {
+		//artistid NOT artistId because the headers are automatically lowercased when sent over the wire
+      $http({method: 'DELETE', url: 'http://www.getvicci.com/node/events', headers:{'eventid': eventId}})
+      .success(function(data) {
+        console.log("successffully deleted event from DB");
+        console.log("this is data: " + data);
+      }).error(function(err) {		
+        console.log("error doing event delete");
+        console.log(err);
+      });
+    }
     $scope.pageTitle = "Events.";
     $scope.artistId = $routeParams.artistId;
 }]);

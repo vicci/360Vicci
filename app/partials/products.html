@@ -29,6 +29,7 @@
       <div class="entity-wrapper">
         <ul>
           <li class="entity-li" ng-repeat="item in products">
+            <button ng-click="deleteProduct(item.id)">X</button>
             <a href="http://www.google.com" style="background:url({{item.image}}) no-repeat center; -webkit-backgroung-size:cover;
 				-moz-background-size:cover; -o-background-size:cover; background-size:cover;">
               <div class='entity-banner'>
