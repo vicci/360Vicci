@@ -50,12 +50,11 @@ vicciappControllers.controller('artistController', ['$scope', '$http',
   function($scope, $http) {
 	  $http({method: 'GET', url: 'http://www.getvicci.com/node/artists'}).
 	        success(function(data, status, headers, config) {
-				console.log('ANGULAR CALLING NODE GETTING ARTISTS SUCCESS');
-	            console.log(data);
+          console.log("angular calling node getting artists success');
 				$scope.viewableArtists = data;
 	        }).
 	        error(function(data, status, headers, config) {
-				console.log('ANGULAR ERROR CALLING GETVICCI.COM/NODE/ARTISTS');
+          console.log("angular error calling getvicci.com/node/artists");
 	          // called asynchronously if an error occurs
 	          // or server returns response with an error status.
 	        });
@@ -65,12 +64,9 @@ vicciappControllers.controller('artistController', ['$scope', '$http',
 		
 	    $http({method: 'PUT', url: 'http://www.getvicci.com/node/artists', data:{'artistName': $scope.form.artistName, 'artistImage': $scope.form.artistImg}})
 			.success(function(data) {
-				console.log('Successfully added artist into DB');
-				console.log('This is data: ' + data);
-			
+				  console.log('Successfully added artist ' + $scope.form.artistName +' into DB');
 	    	}).error(function(err) {
-				console.log('Error doing PUT')
-	    		console.log(err);
+				  console.log('Error doing PUT')
 	    	});  
     };
 	
@@ -80,30 +76,19 @@ vicciappControllers.controller('artistController', ['$scope', '$http',
       $http({method: 'DELETE', url: 'http://www.getvicci.com/node/artists', headers:{'artistid': artistId}})
       .success(function(data) {
         console.log("successffully deleted artist from DB");
-        console.log("this is data: " + data);
       }).error(function(err) {		
         console.log("error doing artist delete");
-        console.log(err);
       });
     };
 
     $scope.pageTitle = 'Artists';
   }]);
-/*
-vicciappControllers.controller('artistController', ['$scope', '$http',
-  function($scope, $http) {
-    $http.get('data/artists.json').success(function(data) {
-          $scope.viewableArtists = data;
-            });
-      $scope.pageTitle = "Artists.";
-}]);
-*/
 
 vicciappControllers.controller('productsController', ['$scope', '$routeParams', '$http',
   function($scope, $routeParams, $http) {
     $http({method: 'POST', url:'http://www.getvicci.com/node/products', data:{'categoryId': $routeParams.categoryId}})
       .success(function(data) {
-      console.log("ANGULAR SUCCESS calling getvicci.com/products");
+      console.log("angular success calling getvicci.com/products");
       $scope.products = data;
     }).
     error(function(data, status, headers, config) {
@@ -122,12 +107,9 @@ vicciappControllers.controller('productsController', ['$scope', '$routeParams', 
         'price': $scope.form.productPrices,
         'weight': $scope.form.productWeight
       }}).success(function(data, status, headers, config) {
-        console.log("successfully added PRODUCT into DB");
-        console.log("this is data: ");
-        console.log(data);
+        console.log("successfully added product into DB");
       }).error(function(err) {
         console.log("error doing PUT for PRODUCTS");
-        console.log(err);
       });
     };
     
@@ -137,10 +119,8 @@ vicciappControllers.controller('productsController', ['$scope', '$routeParams', 
       $http({method: 'DELETE', url: 'http://www.getvicci.com/node/products', headers:{'productid': productId}})
       .success(function(data) {
         console.log("successffully deleted product from DB");
-        console.log("this is data: " + data);
       }).error(function(err) {		
         console.log("error doing product delete");
-        console.log(err);
       });
     };
     
@@ -165,11 +145,8 @@ vicciappControllers.controller('categoriesController', ['$scope', '$routeParams'
       	'eventId': $routeParams.eventId }})
 		.success(function(data, status, headers, config) {
       		console.log("successfully added CATEGORY into DB");
-      		console.log("this is data: ");
-      		console.log(data);
     	}).error(function(err) {
       		console.log("error doing PUT for CATEGORY");
-      		console.log(err);
     	});
 	};
    $scope.deleteCategory = function(categoryId) {
@@ -178,10 +155,8 @@ vicciappControllers.controller('categoriesController', ['$scope', '$routeParams'
       $http({method: 'DELETE', url: 'http://www.getvicci.com/node/categories', headers:{'categoryid':categoryId}})
       .success(function(data) {
         console.log("successffully deleted category from DB");
-        console.log("this is data: " + data);
       }).error(function(err) {		
         console.log("error doing category delete");
-        console.log(err);
       });
      };
 	 
@@ -195,8 +170,7 @@ vicciappControllers.controller('eventController', ['$scope', '$routeParams', '$h
   function($scope, $routeParams, $http) {
     $http({method: 'POST', url: 'http://www.getvicci.com/node/events', data:{'artistId': $routeParams.artistId}}).
       success(function(data, status, headers, config) {
-		console.log('ANGULAR CALLING NODE GETTING EVENTS SUCCESS');
-        console.log(data);
+		  console.log('ANGULAR CALLING NODE GETTING EVENTS SUCCESS');
 		$scope.viewableEvents = data;
       }).
       error(function(data, status, headers, config) {
@@ -219,26 +193,18 @@ vicciappControllers.controller('eventController', ['$scope', '$routeParams', '$h
       'radius': $scope.form.radius,
     }}).success(function(data, status, headers, config) {
       console.log("successfully added event into DB");
-      console.log("this is data: ");
-      console.log(data);
     }).error(function(err) {
       console.log("error doing put for event");
-      console.log(err);
     });
   };
-    /*$http.get('data/events-00.json').success(function(data) {
-          $scope.viewableEvents = data.events;
-    });*/
     $scope.deleteEvent = function(eventId) {
 		
 	  //eventid NOT eventId because the headers are automatically lowercased when sent over the wire
       $http({method: 'DELETE', url: 'http://www.getvicci.com/node/events', headers:{'eventid': eventId}})
       .success(function(data) {
         console.log("successffully deleted event from DB");
-        console.log("this is data: " + data);
       }).error(function(err) {		
         console.log("error doing event delete");
-        console.log(err);
       });
     };
 	
@@ -246,8 +212,6 @@ vicciappControllers.controller('eventController', ['$scope', '$routeParams', '$h
     $scope.artistId = $routeParams.artistId;
 }]);
 
-//artistManager.controller('loginController', function($scope){
-//artistManager.controller('loginController', function($scope){
 vicciappControllers.controller('loginController', function($scope){
   $scope.username = "Enter Email";
   $scope.password = "Password";
@@ -291,68 +255,6 @@ function validatePw(password) {
 
 
 
-
-/*
-this.lastEventListUpdate = ""
-this.api_eventList = "http://api.getvicci.com/api/event/event_lists"
-this.api_eventDetails = "http://api.getvicci.com/api/event/event_details"
-this.api_payment = "http://api.getvicci.com/api/payment/pay"
-this.api_login = "http://api.getvicci.com/api/user/login"
-
-this.getEventList = function(callback){
-$.ajax({
-type: 'POST',
-data: {lastUpdatedTime: this.lastEventListUpdate},
-url: this.api_eventList,
-success: function(json) {
-window.localStorage.setItem("events", JSON.stringify(json));
-this.lastEventListUpdate = json.lastUpdatedTime
-if (callback) {
-callback()
-}
-},
-error: function(e) {
-  console.log(e.message);
-}
-});
-}
-*/
-
-/*
-
-$http({
-    method: 'POST',
-      url:'http://api.getvicci.com/api/event/event_lists',
-        headers: {},
-          data: {"lastUpdatedTime": ""}});
-
-
-
-artistManager.controller('artistController', function($scope) {
-  $scope.pageTitle = "Artists."
-  $scope.viewableArtists = [
-    {
-		'name': 'Carrie Underwood',
-	 	'img': 'http://ww1.prweb.com/prfiles/2012/06/24/9815034/carrie-underwood-2.jpg'
-	},
-    {
-		'name': 'Justin Beiber',
-		'img': 'http://www.billboard.com/files/styles/promo_650/public/media/justin-bieber-the-key-perfume-650-430.jpg'
-	},
-    {
-		'name': 'Joey Cozza',
-		'img': 'https://scontent-a-lax.xx.fbcdn.net/hphotos-ash2/217217_179826965402769_8331873_n.jpg'
-	},
-    {
-		'name': 'Mikey Murphy',
-		'img': 'https://scontent-b-lax.xx.fbcdn.net/hphotos-ash3/558634_4183476898960_1054087519_n.jpg'
-	},
-	{
-		'name': 'Jin Lee',
-		'img': 'https://scontent-b-lax.xx.fbcdn.net/hphotos-ash4/1001581_10153121023335416_1540078767_n.jpg'
-	}
-  ];
-});*/
 
 
 
