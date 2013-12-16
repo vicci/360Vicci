@@ -90,14 +90,28 @@ app.put('/artists', function(req, res) {
 	
 });
 
+app.delete('/artists', function(req, res) {
+	
+	var query = sequelize.query('delete from artist where id =' + req.body.artistId)
+		.success(function() {
+			console.log('deleted artist from table');
+			res.send(200);
+		}).error(function(err) {
+			console.log('Error deleting artist from database:\n');
+			console.log(err);
+			res.send(500);
+		});
+	
+});
+
 app.post('/events', function(req, res) {
 	
 	var query = sequelize.query('SELECT * FROM event where artist_id = ' + req.body.artistId)
-	.success(function(rows) {
-		res.send(rows);
-	}).error(function(err) {
-		console.log('ERROR: ' + err);
-	});
+		.success(function(rows) {
+			res.send(rows);
+		}).error(function(err) {
+			console.log('ERROR: ' + err);
+		});
 	
 });
 
@@ -115,6 +129,19 @@ app.put('/events', function(req, res){
 	
 });
 
+app.delete('/events', function(req, res) {
+	
+	var query = sequelize.query('delete from event where id =' + req.body.eventId)
+		.success(function() {
+			console.log('deleted event from table');
+			res.send(200);
+		}).error(function(err) {
+			console.log('Error deleting event from database:\n');
+			console.log(err);
+			res.send(500);
+		});
+	
+});
 
 app.post('/categories', function(req, res) {
   		
@@ -134,6 +161,20 @@ app.put('/categories', function(req, res) {
 		})
 		.error(function(err) {
 			console.log('Error adding category into database:');
+			console.log(err);
+			res.send(500);
+		});
+	
+});
+
+app.delete('/categories', function(req, res) {
+	
+	var query = sequelize.query('delete from booth where id =' + req.body.categoryId)
+		.success(function() {
+			console.log('deleted category from table');
+			res.send(200);
+		}).error(function(err) {
+			console.log('Error deleting category from database:\n');
 			console.log(err);
 			res.send(500);
 		});
@@ -164,6 +205,19 @@ app.put('/products', function(req, res) {
 	
 });
 
+app.delete('/products', function(req, res) {
+	
+	var query = sequelize.query('delete from product where id =' + req.body.productId)
+		.success(function() {
+			console.log('deleted product from table');
+			res.send(200);
+		}).error(function(err) {
+			console.log('Error deleting product from database:\n');
+			console.log(err);
+			res.send(500);
+		});
+	
+});
 
 
 var server = http.createServer(app)
