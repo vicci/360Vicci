@@ -140,8 +140,8 @@ vicciappControllers.controller('productsController', ['$scope', '$routeParams', 
       }).error(function(err) {		
         console.log("error doing product delete");
         console.log(err);
-      })
-    };
+      });
+    }
     
     $scope.categoryId = $routeParams.categoryId;
 }]);
@@ -181,7 +181,7 @@ vicciappControllers.controller('categoriesController', ['$scope', '$routeParams'
         console.log("error doing category delete");
         console.log(err);
       });
-     };
+     }
   $scope.eventId = $routeParams.eventId;
 }]);
 
