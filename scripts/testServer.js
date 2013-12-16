@@ -132,7 +132,7 @@ app.put('/events', function(req, res){
 
 app.delete('/events', function(req, res) {
 	
-	var query = sequelize.query('delete from event where id =' + req.body.eventId)
+	var query = sequelize.query('delete from event where id =' + req.headers.eventId)
 		.success(function() {
 			console.log('deleted event from table');
 			res.send(200);
@@ -170,7 +170,7 @@ app.put('/categories', function(req, res) {
 
 app.delete('/categories', function(req, res) {
 	
-	var query = sequelize.query('delete from booth where id =' + req.body.categoryId)
+	var query = sequelize.query('delete from booth where id =' + req.headers.categoryId)
 		.success(function() {
 			console.log('deleted category from table');
 			res.send(200);
@@ -208,7 +208,7 @@ app.put('/products', function(req, res) {
 
 app.delete('/products', function(req, res) {
 	
-	var query = sequelize.query('delete from product where id =' + req.body.productId)
+	var query = sequelize.query('delete from product where id =' + req.headers.productId)
 		.success(function() {
 			console.log('deleted product from table');
 			res.send(200);

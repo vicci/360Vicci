@@ -72,7 +72,7 @@ vicciappControllers.controller('artistController', ['$scope', '$http',
 				console.log('Error doing PUT')
 	    		console.log(err);
 	    	});  
-    }
+    };
 	
     $scope.deleteArtist = function(artistId) {
 
@@ -85,7 +85,7 @@ vicciappControllers.controller('artistController', ['$scope', '$http',
         console.log("error doing artist delete");
         console.log(err);
       });
-    }
+    };
 
     $scope.pageTitle = 'Artists';
   }]);
@@ -132,7 +132,7 @@ vicciappControllers.controller('productsController', ['$scope', '$routeParams', 
     };
     $scope.deleteProduct = function(productId) {
 
-		//artistid NOT artistId because the headers are automatically lowercased when sent over the wire
+		//productid NOT productId because the headers are automatically lowercased when sent over the wire
       $http({method: 'DELETE', url: 'http://www.getvicci.com/node/products', headers:{'productid': productId}})
       .success(function(data) {
         console.log("successffully deleted product from DB");
@@ -141,7 +141,7 @@ vicciappControllers.controller('productsController', ['$scope', '$routeParams', 
         console.log("error doing product delete");
         console.log(err);
       });
-    }
+    };
     
     $scope.categoryId = $routeParams.categoryId;
 }]);
@@ -159,20 +159,21 @@ vicciappControllers.controller('categoriesController', ['$scope', '$routeParams'
   $scope.pageTitle = "Merchandise Categories";
   $scope.addCategory = function() {
     $http({method: 'PUT', url: 'http://www.getvicci.com/node/categories', data: {
-      'name': $scope.form.categoryName,
-      'image': $scope.form.categoryImage,
-      'eventId': $routeParams.eventId
-    }}).success(function(data, status, headers, config) {
-      console.log("successfully added CATEGORY into DB");
-      console.log("this is data: ");
-      console.log(data);
-    }).error(function(err) {
-      console.log("error doing PUT for CATEGORY");
-      console.log(err);
-    });
+      	'name': $scope.form.categoryName,
+      	'image': $scope.form.categoryImage,
+      	'eventId': $routeParams.eventId }})
+		.success(function(data, status, headers, config) {
+      		console.log("successfully added CATEGORY into DB");
+      		console.log("this is data: ");
+      		console.log(data);
+    	}).error(function(err) {
+      		console.log("error doing PUT for CATEGORY");
+      		console.log(err);
+    	});
+	};
    $scope.deleteCategory = function(categoryId) {
 
-		//artistid NOT artistId because the headers are automatically lowercased when sent over the wire
+		//categoryid NOT categoryId because the headers are automatically lowercased when sent over the wire
       $http({method: 'DELETE', url: 'http://www.getvicci.com/node/categories', headers:{'categoryid':categoryId}})
       .success(function(data) {
         console.log("successffully deleted category from DB");
@@ -181,7 +182,8 @@ vicciappControllers.controller('categoriesController', ['$scope', '$routeParams'
         console.log("error doing category delete");
         console.log(err);
       });
-     }
+     };
+	 
   $scope.eventId = $routeParams.eventId;
 }]);
 
@@ -227,7 +229,8 @@ vicciappControllers.controller('eventController', ['$scope', '$routeParams', '$h
           $scope.viewableEvents = data.events;
     });*/
     $scope.deleteEvent = function(eventId) {
-		//artistid NOT artistId because the headers are automatically lowercased when sent over the wire
+		
+	  //eventid NOT eventId because the headers are automatically lowercased when sent over the wire
       $http({method: 'DELETE', url: 'http://www.getvicci.com/node/events', headers:{'eventid': eventId}})
       .success(function(data) {
         console.log("successffully deleted event from DB");
@@ -236,7 +239,8 @@ vicciappControllers.controller('eventController', ['$scope', '$routeParams', '$h
         console.log("error doing event delete");
         console.log(err);
       });
-    }
+    };
+	
     $scope.pageTitle = "Events.";
     $scope.artistId = $routeParams.artistId;
 }]);
