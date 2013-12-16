@@ -18,6 +18,7 @@
       <div class="entity-wrapper">
         <ul>
           <li class="entity-li" ng-repeat="artist in viewableArtists">
+            <button ng-click="deleteArtist(artist.id)">X</button>
             <a href="#/events/{{artist.id}}" style="background:url({{artist.image}}) no-repeat center; -webkit-background-size:cover;
 				-moz-background-size:cover; -o-background-size:cover; background-size:cover;">
               <div class='entity-banner'>

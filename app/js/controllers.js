@@ -73,6 +73,16 @@ vicciappControllers.controller('artistController', ['$scope', '$http',
 	    		console.log(err);
 	    	});  
     }
+    $scope.deleteArtist = function(artistId) {
+      $http({method: 'DELETE', url: 'http://www.getvicci.com/node/artists', data:{'artistId': artistId}})
+      .success(function(data) {
+        console.log("successffully deleted artist from DB");
+        console.log("this is data: " + data);
+      }).error(function(err) {
+        console.log("error doing artist delete");
+        console.log(err);
+      });
+    }
 
     $scope.pageTitle = 'Artists';
   }]);
