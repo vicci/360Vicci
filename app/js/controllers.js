@@ -130,7 +130,7 @@ vicciappControllers.controller('productsController', ['$scope', '$routeParams', 
         console.log(err);
       });
     };
-    $scope.deleteArtist = function(productId) {
+    $scope.deleteProduct = function(productId) {
 
 		//artistid NOT artistId because the headers are automatically lowercased when sent over the wire
       $http({method: 'DELETE', url: 'http://www.getvicci.com/node/products', headers:{'productid': productId}})
@@ -140,7 +140,8 @@ vicciappControllers.controller('productsController', ['$scope', '$routeParams', 
       }).error(function(err) {		
         console.log("error doing product delete");
         console.log(err);
-      });
+      })
+    };
     
     $scope.categoryId = $routeParams.categoryId;
 }]);
