@@ -78,8 +78,8 @@ app.get('/artists', function(req, res) {
 
 app.put('/artists', function(req, res) {
 	
-	var query = sequelize.query('insert into artist (name, image) values (\'' + qi.escape(req.body.artistName) + 
-								'\', \'' + qi.escape(req.body.artistImage) + '\')')
+	var query = sequelize.query('insert into artist (name, image) values (' + qi.escape(req.body.artistName) + 
+								', ' + qi.escape(req.body.artistImage) + ')')
 		.success(function() {
 			console.log('added artist into table');
 			res.send(200);					
@@ -119,13 +119,13 @@ app.post('/events', function(req, res) {
 
 app.put('/events', function(req, res){
 	
-	var query = sequelize.query('INSERT INTO event(title, description, address, image, latitude, longitude, start_date, end_date, status, access_code, enable_verification, radius, artist_id) VALUES (\'' 
-								+ qi.escape(req.body.title) + '\', \'' + qi.escape(req.body.description)
-								 + '\', \'' + qi.escape(req.body.address) + '\', \'' + qi.escape(req.body.image)
-								  + '\', \'' + qi.escape(req.body.latitude) + '\', \'' + qi.escape(req.body.longitude)
-								   + '\', \'' + qi.escape(req.body.startDate) + '\', \'' + qi.escape(req.body.endDate)
-								    + '\', ' + qi.escape(req.body.status) + ', \'' + qi.escape(req.body.accessCode)
-									 + '\', ' + qi.escape(req.body.enableVerification) +', ' + qi.escape(req.body.radius)
+	var query = sequelize.query('INSERT INTO event(title, description, address, image, latitude, longitude, start_date, end_date, status, access_code, enable_verification, radius, artist_id) VALUES (' 
+								+ qi.escape(req.body.title) + ', ' + qi.escape(req.body.description)
+								 + ', ' + qi.escape(req.body.address) + ', ' + qi.escape(req.body.image)
+								  + ', ' + qi.escape(req.body.latitude) + ', ' + qi.escape(req.body.longitude)
+								   + ', ' + qi.escape(req.body.startDate) + ', ' + qi.escape(req.body.endDate)
+								    + ', ' + qi.escape(req.body.status) + ', ' + qi.escape(req.body.accessCode)
+									 + ', ' + qi.escape(req.body.enableVerification) +', ' + qi.escape(req.body.radius)
 									  +', ' + qi.escape(req.body.artistId) + ')')
 	.success(function(){
 		console.log('adding event into database');
@@ -166,7 +166,7 @@ app.post('/categories', function(req, res) {
 app.put('/categories', function(req, res) {
 
 	var query = sequelize.query('INSERT INTO booth(event_id, name, image) VALUES (' + qi.escape(req.body.eventId)
-		 						+ ',\'' + qi.escape(req.body.name) + '\',\'' + qi.escape(req.body.image) + '\')')
+		 						+ ',' + qi.escape(req.body.name) + ',' + qi.escape(req.body.image) + ')')
 		.success(function() {
 			console.log('added category into database');
 		})
@@ -206,18 +206,18 @@ app.post('/products', function(req, res) {
 
 app.put('/products', function(req, res) {
 
-	var query = sequelize.query('INSERT INTO product(product_sku, title, description, image, booth_id, size, price, weight) VALUES (\'' 
-								+ qi.escape(req.body.productSKU) + '\',  \'' + qi.escape(req.body.title)
-								 + '\',  \'' + qi.escape(req.body.description) + '\', \'' + qi.escape(req.body.image)
-								  + '\',' + qi.escape(req.body.boothId) + ',  \'' + qi.escape(req.body.size)
-								   + '\',' + qi.escape(req.body.price) + ', ' + qi.escape(req.body.weight) + ')')
+	var query = sequelize.query('INSERT INTO product(product_sku, title, description, image, booth_id, size, price, weight) VALUES (' 
+								+ qi.escape(req.body.productSKU) + ',  ' + qi.escape(req.body.title)
+								 + ',  ' + qi.escape(req.body.description) + ', ' + qi.escape(req.body.image)
+								  + ',' + qi.escape(req.body.boothId) + ',  ' + qi.escape(req.body.size)
+								   + ',' + qi.escape(req.body.price) + ', ' + qi.escape(req.body.weight) + ')')
 		.success(function() {
 			console.log('added product into database');
 		})
 		.error(function(err) {
 			console.log('Error adding product into database:');
 			console.log(err);
-			res.send(500);
+			res.send(500); 
 		});
 	
 });
