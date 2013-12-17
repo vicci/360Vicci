@@ -10,6 +10,25 @@ var sequelize = new Sequelize('test', 'root', 'FFBEsyAI', {
 });
 
 
+//authenticating that the database was connected to correctly
+sequelize.authenticate().complete(function(err) {
+	if(!err) {
+		console.log('Connection has been established successfully.');
+	} else {
+		console.log('Unable to connect to the database');
+	}
+})
+var qi = sequelize.getQueryInterface();
+var Clothes;
+qi.describeTable('clothes')
+.success(function(data) {
+	Clothes = sequelize.define('Clothes',data);
+}).error(function(err) {
+	console.log(err);
+})
+
+
+
 var app = express()
 var clientDir = path.join(__dirname, '../app')
 
@@ -20,14 +39,31 @@ app.configure(function() {
 })
 
 app.get('/', function(req, res) {
-		
-    var query = sequelize.query('SELECT * FROM clothes').success(function(rows){
-    	console.log('\nI am about to print rows:');
+	
+	var injection = '1 OR True';
+	
+	sequelize.query('select * from clothes where id = ' + qi.escape(injection))
+	.success(function(rows) {
+		console.log('Printing injected rows');
 		console.log(rows);
-    }).error(function(err) {
-    	console.log('I AM AN ERROR: ' + err);
-    });
- 
+	})
+
+	//Ideally we would do it like this!!
+	/*
+	Clothes.findAll({where:{id:injection}})
+	.success(function(data) {
+		console.log('Printing the safer sql query');
+		var rows=[];
+		for(var i=0; i < data.length; i++) {
+			rows.push(data[i].selectedValues);
+		}
+		console.log('about to print safe sql rows');
+		console.log(rows);
+	}).error(function(err) {
+		console.log(err);
+	})*/	
+	
+
   	res.sendfile(path.join(clientDir, 'index.html'))
 })
 
@@ -41,3 +77,4 @@ var server = http.createServer(app)
 server.listen(app.get('port'), function() {
   console.log('listening on: %d', app.get('port'))
 });
+

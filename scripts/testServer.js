@@ -10,7 +10,7 @@ var sequelize = new Sequelize('api_test', 'api', 'V4f23k4uEI2J8R1L14KF', {
   host: 'localhost',
   port: 3306
 });
-
+var qi = sequelize.getQueryInterface();
 
 var app = express()
 var clientDir = path.join(__dirname, '../app')
@@ -78,7 +78,8 @@ app.get('/artists', function(req, res) {
 
 app.put('/artists', function(req, res) {
 	
-	var query = sequelize.query('insert into artist (name, image) values (\'' + req.body.artistName + '\', \'' + req.body.artistImage + '\')')
+	var query = sequelize.query('insert into artist (name, image) values (\'' + qi.escape(req.body.artistName) + 
+								'\', \'' + qi.escape(req.body.artistImage) + '\')')
 		.success(function() {
 			console.log('added artist into table');
 			res.send(200);					
@@ -93,7 +94,7 @@ app.put('/artists', function(req, res) {
 app.delete('/artists', function(req, res) {
 	
 	//artistid NOT artistId because the headers are automatically lowercased when sent over the wire
-	var query = sequelize.query('delete from artist where id = ' + req.headers.artistid)
+	var query = sequelize.query('delete from artist where id = ' + qi.escape(req.headers.artistid))
 		.success(function() {
 			console.log('deleted artist from table');
 			res.send(200);
@@ -107,7 +108,7 @@ app.delete('/artists', function(req, res) {
 
 app.post('/events', function(req, res) {
 	
-	var query = sequelize.query('SELECT * FROM event where artist_id = ' + req.body.artistId)
+	var query = sequelize.query('SELECT * FROM event where artist_id = ' + qi.escape(req.body.artistId))
 		.success(function(rows) {
 			res.send(rows);
 		}).error(function(err) {
@@ -118,7 +119,14 @@ app.post('/events', function(req, res) {
 
 app.put('/events', function(req, res){
 	
-	var query = sequelize.query('INSERT INTO event(title, description, address, image, latitude, longitude, start_date, end_date, status, access_code, enable_verification, radius, artist_id) VALUES (\'' + req.body.title + '\', \'' + req.body.description + '\', \'' + req.body.address + '\', \'' + req.body.image + '\', \'' + req.body.latitude + '\', \'' + req.body.longitude + '\', \'' + req.body.startDate + '\', \'' + req.body.endDate + '\', ' + req.body.status + ', \'' + req.body.accessCode + '\', ' + req.body.enableVerification +', ' + req.body.radius +', ' + req.body.artistId + ')')
+	var query = sequelize.query('INSERT INTO event(title, description, address, image, latitude, longitude, start_date, end_date, status, access_code, enable_verification, radius, artist_id) VALUES (\'' 
+								+ qi.escape(req.body.title) + '\', \'' + qi.escape(req.body.description)
+								 + '\', \'' + qi.escape(req.body.address) + '\', \'' + qi.escape(req.body.image)
+								  + '\', \'' + qi.escape(req.body.latitude) + '\', \'' + qi.escape(req.body.longitude)
+								   + '\', \'' + qi.escape(req.body.startDate) + '\', \'' + qi.escape(req.body.endDate)
+								    + '\', ' + qi.escape(req.body.status) + ', \'' + qi.escape(req.body.accessCode)
+									 + '\', ' + qi.escape(req.body.enableVerification) +', ' + qi.escape(req.body.radius)
+									  +', ' + qi.escape(req.body.artistId) + ')')
 	.success(function(){
 		console.log('adding event into database');
 	})
@@ -133,7 +141,7 @@ app.put('/events', function(req, res){
 app.delete('/events', function(req, res) {
 
 	//eventid NOT eventId because the headers are automatically lowercased when sent over the wire
-	var query = sequelize.query('delete from event where id =' + req.headers.eventid)
+	var query = sequelize.query('delete from event where id =' + qi.escape(req.headers.eventid))
 		.success(function() {
 			console.log('deleted event from table');
 			res.send(200);
@@ -147,7 +155,7 @@ app.delete('/events', function(req, res) {
 
 app.post('/categories', function(req, res) {
   		
-  	var query = sequelize.query('SELECT * FROM booth where event_id = ' + req.body.eventId)
+  	var query = sequelize.query('SELECT * FROM booth where event_id = ' + qi.escape(req.body.eventId))
 		.success(function(rows){
 	  	  	res.send(rows);
     	}).error(function(err) {
@@ -157,7 +165,8 @@ app.post('/categories', function(req, res) {
 
 app.put('/categories', function(req, res) {
 
-	var query = sequelize.query('INSERT INTO booth(event_id, name, image) VALUES (' + req.body.eventId + ',\'' + req.body.name + '\',\'' + req.body.image + '\')')
+	var query = sequelize.query('INSERT INTO booth(event_id, name, image) VALUES (' + qi.escape(req.body.eventId)
+		 						+ ',\'' + qi.escape(req.body.name) + '\',\'' + qi.escape(req.body.image) + '\')')
 		.success(function() {
 			console.log('added category into database');
 		})
@@ -172,7 +181,7 @@ app.put('/categories', function(req, res) {
 app.delete('/categories', function(req, res) {
 	
 	//categoryid NOT categoryId because the headers are automatically lowercased when sent over the wire
-	var query = sequelize.query('delete from booth where id =' + req.headers.categoryid)
+	var query = sequelize.query('delete from booth where id =' + qi.escape(req.headers.categoryid))
 		.success(function() {
 			console.log('deleted category from table');
 			res.send(200);
@@ -186,17 +195,22 @@ app.delete('/categories', function(req, res) {
 
 app.post('/products', function(req, res) {
   		
-  	var query = sequelize.query('SELECT * FROM product where booth_id = ' + req.body.categoryId)
+  	var query = sequelize.query('SELECT * FROM product where booth_id = ' + qi.escape(req.body.categoryId))
 		.success(function(rows){
 	  	  	res.send(rows);
     	}).error(function(err) {
       	  	console.log('ERROR: ' + err);
     	});
+	
 })
 
 app.put('/products', function(req, res) {
 
-	var query = sequelize.query('INSERT INTO product(product_sku, title, description, image, booth_id, size, price, weight) VALUES (\'' + req.body.productSKU + '\',  \'' + req.body.title + '\',  \'' + req.body.description + '\', \'' + req.body.image + '\',' + req.body.boothId + ',  \'' + req.body.size + '\',' + req.body.price + ', ' + req.body.weight + ')')
+	var query = sequelize.query('INSERT INTO product(product_sku, title, description, image, booth_id, size, price, weight) VALUES (\'' 
+								+ qi.escape(req.body.productSKU) + '\',  \'' + qi.escape(req.body.title)
+								 + '\',  \'' + qi.escape(req.body.description) + '\', \'' + qi.escape(req.body.image)
+								  + '\',' + qi.escape(req.body.boothId) + ',  \'' + qi.escape(req.body.size)
+								   + '\',' + qi.escape(req.body.price) + ', ' + qi.escape(req.body.weight) + ')')
 		.success(function() {
 			console.log('added product into database');
 		})
@@ -211,7 +225,7 @@ app.put('/products', function(req, res) {
 app.delete('/products', function(req, res) {
 	
 	//productid NOT productId because the headers are automatically lowercased when sent over the wire
-	var query = sequelize.query('delete from product where id =' + req.headers.productid)
+	var query = sequelize.query('delete from product where id =' + qi.escape(req.headers.productid))
 		.success(function() {
 			console.log('deleted product from table');
 			res.send(200);
