@@ -13,17 +13,18 @@ html{
 	font-family: 'oldSans', sans-serif;
 	position:relative;
 	height:100%;
-	width:100%;
+
 }
 body {
+	display:block;
+	position:absolute;
+	height:auto;
 	background: url("http://lerablog.org/wp-content/uploads/2013/07/concert.jpg") no-repeat bottom; 
 	  -webkit-background-size: cover;
 	  -moz-background-size: cover;
 	  -o-background-size: cover;
 	  background-size: cover;
-	  height:100%;
-	width:100%;				
-	  position:relative;
+		overflow:visible;
 }
 header{
 	position:absolute;
@@ -36,9 +37,27 @@ header{
 	width:70%;
 	position:relative;
 	margin:0 auto;
+	
+}
+.form-content{
+	background-color:rgba(0,156,222,.7);
+	padding:20px;
+
+/*background-color:rgba(255,79,2,.7);*/
+}
+.form-content form>*{
+	display:block;
+	margin:8px auto;
+	padding:8px;
+	width:250px;
+}
+.form-content button{
+	color:white;
+	text-transform:uppercase;
+	background-color:rgba(255,79,2,.7);
+	border-style:none;
 }
 .entity-wrapper{
-	width:100%;
 	positon:relative;
 	background-color:rgba(255,255,255,.7);
 }
@@ -76,6 +95,17 @@ header{
 	color:#212721;
 	position:relative;
 	font-size:7em;
-border:solid 1px white;
 }
+.entity-li button{
+	position:absolute;
+	top:0;
+	right:0;
+	color:white;
+	text-transform:uppercase;
+	background-color:rgba(255,79,2,.7);
+	border-style: none;
+	width:25px;
+	height:25px;
+	z-index:1000;
+}	
 

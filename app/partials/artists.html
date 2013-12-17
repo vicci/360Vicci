@@ -2,12 +2,12 @@
   <header>
   <button>logoff</button>
   </header>
-  <div class="content-wrapper">
-    <form name="newArtist">
-    <label>Client Name:</label>
-    <input type="text" ng-model="form.artistName" required/>
-    <label>URL:</label>
-    <input type="url" name="picURL" ng-model="form.artistImg" placeholder="http://"required/>
+  <div id="add-form" class="form-content content-wrapper">
+    <form name="newArtist"><!--
+    <label>Client Name:</label>-->
+    <input type="text" placeholder="CLIENT NAME" ng-model="form.artistName" required/>
+<!--    <label>URL:</label>-->
+    <input type="url" name="picURL" ng-model="form.artistImg" placeholder='IMG URL -> "http://..."'required/>
     <button ng-click="addArtist()">Add Artist</button>
     </form>
   </div>
