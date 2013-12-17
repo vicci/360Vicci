@@ -2,17 +2,28 @@
   <header>
   <button>logoff</button>
   </header>
+  <div class="content-wrapper">
+    <form name="newCategory">
+    <label>Category Name</label>
+    <input type="text" ng-model="form.categoryName" required/>
+    <label>Image URL</label>
+    <input type="url" ng-model="form.categoryImage" placeholder="http://" required/>
+    <button ng-click="addCategory()">Add Category</button>
+    </form>
+
+  </div>
 
   <div class='content-wrapper'>
       <h1 class='title'>{{pageTitle}}</h1>
 
       <div class="entity-wrapper">
         <ul>
-          <li class="entity-li" ng-repeat="item in items">
-            <a href="http://www.google.com" style="background:url({{item.itemImage}}) no-repeat center; -webkit-backgroung-size:cover;
+          <li class="entity-li" ng-repeat="category in categories">
+            <button ng-click="deleteCategory(category.id)">X</button>
+            <a href="#/products/{{category.id}}" style="background:url({{category.image}}) no-repeat center; -webkit-backgroung-size:cover;
 				-moz-background-size:cover; -o-background-size:cover; background-size:cover;">
               <div class='entity-banner'>
-                <h4>{{item.itemName}} - ${{item.itemPrice}}</h4>
+                <h4>{{category.name}}</h4>
               </div>
             </a>
           </li>

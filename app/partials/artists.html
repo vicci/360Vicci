@@ -2,6 +2,15 @@
   <header>
   <button>logoff</button>
   </header>
+  <div class="content-wrapper">
+    <form name="newArtist">
+    <label>Client Name:</label>
+    <input type="text" ng-model="form.artistName" required/>
+    <label>URL:</label>
+    <input type="url" name="picURL" ng-model="form.artistImg" placeholder="http://"required/>
+    <button ng-click="addArtist()">Add Artist</button>
+    </form>
+  </div>
 
   <div class='content-wrapper'>
       <h1 class='title'>{{pageTitle}}</h1>
@@ -9,7 +18,8 @@
       <div class="entity-wrapper">
         <ul>
           <li class="entity-li" ng-repeat="artist in viewableArtists">
-            <a href="http://www.google.com" style="background:url({{artist.img}}) no-repeat center; -webkit-backgroung-size:cover;
+            <button ng-click="deleteArtist(artist.id)">X</button>
+            <a href="#/events/{{artist.id}}" style="background:url({{artist.image}}) no-repeat center; -webkit-background-size:cover;
 				-moz-background-size:cover; -o-background-size:cover; background-size:cover;">
               <div class='entity-banner'>
                 <h4>{{artist.name}}</h4>

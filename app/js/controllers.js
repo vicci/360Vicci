@@ -28,7 +28,7 @@ $scope.uploadFile = function((files) {
 NOTE TO SELVES. TRYING TO FIGURE OUT THE CLOSINGS PROPERLY FOR UPLOADING FILES...
 http://jsfiddle.net/vishalvasani/4hqVu/
 */
-vicciappControllers.controller('alphatestController', ['$scope', '$routeParams', '$http',
+/*vicciappControllers.controller('alphatestController', ['$scope', '$routeParams', '$http',
 function($scope, $routeParams, $http){
     console.log("hello there");
 }]
@@ -43,105 +43,179 @@ $scope.pageTitle = 'alpha testing'
     })
   }
   
-);
-
-
+);*/
 
 
 vicciappControllers.controller('artistController', ['$scope', '$http',
   function($scope, $http) {
-    $http.get('data/artists.json').success(function(data) {
-      $scope.viewableArtists = data;
-    });
+	  $http({method: 'GET', url: 'http://www.getvicci.com/node/artists'}).
+	        success(function(data, status, headers, config) {
+            console.log("angular calling node getting artists success");
+				    $scope.viewableArtists = data;
+	        }).
+	        error(function(data, status, headers, config) {
+            console.log("angular error calling getvicci.com/node/artists");
+	          // called asynchronously if an error occurs
+	          // or server returns response with an error status.
+	        });
+    
+    
+    $scope.addArtist = function() {
+		
+	    $http({method: 'PUT', url: 'http://www.getvicci.com/node/artists', data:{'artistName': $scope.form.artistName, 'artistImage': $scope.form.artistImg}})
+			.success(function(data) {
+				  console.log('Successfully added artist ' + $scope.form.artistName +' into DB');
+	    	}).error(function(err) {
+				  console.log('Error doing PUT')
+	    	});  
+    };
+	
+    $scope.deleteArtist = function(artistId) {
 
-    $scope.pageTitle = 'Artists.';
-  }]);
-/*
-vicciappControllers.controller('artistController', ['$scope', '$http',
-  function($scope, $http) {
-    $http.get('data/artists.json').success(function(data) {
-          $scope.viewableArtists = data;
-            });
-      $scope.pageTitle = "Artists.";
-}]);
-*/
-
-vicciappControllers.controller('merchDetailsController', ['$scope', '$routeParams', '$http',
-  function($scope, $routeParams, $http) {
-    $http.get('data/' + $routeParams.eventId + '.json').success(function(data) {
-      $scope.items = findCategory(data.categories, $routeParams.categoryId); //data.categories;
+		//artistid NOT artistId because the headers are automatically lowercased when sent over the wire
+      $http({method: 'DELETE', url: 'http://www.getvicci.com/node/artists', headers:{'artistid': artistId}})
+      .success(function(data) {
+        console.log("successffully deleted artist from DB");
+      }).error(function(err) {		
+        console.log("error doing artist delete");
       });
-    console.log($routeParams.category);
-    $scope.pageTitle = $routeParams.category;
+    };
+
+    $scope.pageTitle = 'Artists';
   }]);
 
-
-function findCategory(categories, categoryId) {
-  for (var i = 0, len = categories.length ; i < len ; i++)
-  {
-    if(categories[i].categoryId == categoryId)
-    {
-      console.log(categories[i].items);
-      return categories[i].items;
-    }
-  }
-}
-
-vicciappControllers.controller('merchController', ['$scope', '$routeParams', '$http',
+vicciappControllers.controller('productsController', ['$scope', '$routeParams', '$http',
   function($scope, $routeParams, $http) {
-    $http.get('data/' + $routeParams.eventId + '.json').success(function(data) {
-      $scope.eventId = $routeParams.eventId;
-      $scope.merchandise = data.categories;
+    $http({method: 'POST', url:'http://www.getvicci.com/node/products', data:{'categoryId': $routeParams.categoryId}})
+      .success(function(data) {
+      console.log("angular success calling getvicci.com/products");
+      $scope.products = data;
+    }).
+    error(function(data, status, headers, config) {
+      console.log("ANGULAR ERROR CALLING getvicci.com/products");
     });
-    $scope.pageTitle = 'Merchandise.';
-//    $scope.nextURL = getNextURL($scope.eventId, $scope.merchandise)
-  }]);
+	
+    $scope.pageTitle = "Products";
+    $scope.addProduct = function() {
+      $http({method: 'PUT', url: 'http://www.getvicci.com/node/products', data: {
+        'title': $scope.form.productTitle,
+        'description': $scope.form.productDescription,
+        'productSKU': $scope.form.productSKU,
+        'image': $scope.form.productImage,
+        'boothId': $routeParams.categoryId,
+        'size': $scope.form.productSizes,
+        'price': $scope.form.productPrices,
+        'weight': $scope.form.productWeight
+      }}).success(function(data, status, headers, config) {
+        console.log("successfully added product into DB");
+      }).error(function(err) {
+        console.log("error doing PUT for PRODUCTS");
+      });
+    };
+    
+	$scope.deleteProduct = function(productId) {
 
-vicciappControllers.controller('eventController', function($scope, $http) {
+		//productid NOT productId because the headers are automatically lowercased when sent over the wire
+      $http({method: 'DELETE', url: 'http://www.getvicci.com/node/products', headers:{'productid': productId}})
+      .success(function(data) {
+        console.log("successffully deleted product from DB");
+      }).error(function(err) {		
+        console.log("error doing product delete");
+      });
+    };
+    
+    $scope.categoryId = $routeParams.categoryId;
+}]);
+
+
+vicciappControllers.controller('categoriesController', ['$scope', '$routeParams', '$http',
+  function($scope, $routeParams, $http) {
+    $http({method: 'POST', url: 'http://www.getvicci.com/node/categories', data:{'eventId': $routeParams.eventId}}).success(function(data) {
+      console.log("ANGULAR SUCCESS calling getvicci.com/categories");
+      $scope.categories = data;
+    }).
+    error(function(data, status, headers, config) {
+      console.log("ANGULAR ERROR CALLING getvicci.com/categories");
+    });
+  $scope.pageTitle = "Merchandise Categories";
+  $scope.addCategory = function() {
+    $http({method: 'PUT', url: 'http://www.getvicci.com/node/categories', data: {
+      	'name': $scope.form.categoryName,
+      	'image': $scope.form.categoryImage,
+      	'eventId': $routeParams.eventId }})
+		.success(function(data, status, headers, config) {
+      		console.log("successfully added CATEGORY into DB");
+    	}).error(function(err) {
+      		console.log("error doing PUT for CATEGORY");
+    	});
+	};
+   $scope.deleteCategory = function(categoryId) {
+
+		//categoryid NOT categoryId because the headers are automatically lowercased when sent over the wire
+      $http({method: 'DELETE', url: 'http://www.getvicci.com/node/categories', headers:{'categoryid':categoryId}})
+      .success(function(data) {
+        console.log("successffully deleted category from DB");
+      }).error(function(err) {		
+        console.log("error doing category delete");
+      });
+     };
+	 
+  $scope.eventId = $routeParams.eventId;
+}]);
 
 /*
-this.api_eventList = "http://api.getvicci.com/api/event/event_details";
-this.lastEventListUpdate ='';
-$.ajax({
-type: 'POST',
-data: {eventId: '61', lastUpdatedTime: this.lastEventListUpdate},
-url: this.api_eventList,
-success: function(json) {
-$scope.viewableEvents = json.events;
-console.log(JSON.stringify(json));
-},
-error: function(e) {
-  console.log(e.message);
-}
-});
-console.log($scope.viewableEvents);
-*/
-
-/*$http.post('http://api.getvicci.com/api/event/event_lists', {lastUpdatedTime: ''}).success(function(data) {
-  $scope.viewableEvents = data.events ;
-  });*/
-  $http({method: 'GET', url: 'http://www.getvicci.com/node'}).
-        success(function(data, status, headers, config) {
-          console.log(data)
-        }).
-        error(function(data, status, headers, config) {
-          // called asynchronously if an error occurs
-          // or server returns response with an error status.
-        });
-
-    $http.get('data/events-00.json').success(function(data) {
-          $scope.viewableEvents = data.events;
+ * Event Controller::
+ */
+vicciappControllers.controller('eventController', ['$scope', '$routeParams', '$http',
+  function($scope, $routeParams, $http) {
+    $http({method: 'POST', url: 'http://www.getvicci.com/node/events', data:{'artistId': $routeParams.artistId}}).
+      success(function(data, status, headers, config) {
+		  console.log('ANGULAR CALLING NODE GETTING EVENTS SUCCESS');
+		$scope.viewableEvents = data;
+      }).
+      error(function(data, status, headers, config) {
+		    console.log('ANGULAR ERROR CALLING GETVICCI.COM/NODE');
+      });
+   $scope.addEvent = function() {
+    $http({method: 'PUT', url: 'http://www.getvicci.com/node/events', data:{
+      'artistId': $routeParams.artistId,
+      'title': $scope.form.eventTitle,
+      'description': $scope.form.description,
+      'address': $scope.form.address,
+      'image': $scope.form.eventImg,
+      'latitude': $scope.form.latitude,
+      'longitude': $scope.form.longitude,
+      'startDate': $scope.form.startDate,
+      'endDate': $scope.form.endDate,
+      'status': $scope.form.status,
+      'accessCode': $scope.form.accessCode,
+      'enableVerification': $scope.form.enableGeo,
+      'radius': $scope.form.radius,
+    }}).success(function(data, status, headers, config) {
+      console.log("successfully added event into DB");
+    }).error(function(err) {
+      console.log("error doing put for event");
     });
+  };
+    $scope.deleteEvent = function(eventId) {
+		
+	  //eventid NOT eventId because the headers are automatically lowercased when sent over the wire
+      $http({method: 'DELETE', url: 'http://www.getvicci.com/node/events', headers:{'eventid': eventId}})
+      .success(function(data) {
+        console.log("successffully deleted event from DB");
+      }).error(function(err) {		
+        console.log("error doing event delete");
+      });
+    };
+	
     $scope.pageTitle = "Events.";
+    $scope.artistId = $routeParams.artistId;
+}]);
 
-      
-});
-
-/*artistManager.controller('loginController', function($scope){
-//artistManager.controller('loginController', function($scope){
 vicciappControllers.controller('loginController', function($scope){
   $scope.username = "Enter Email";
   $scope.password = "Password";
+  $scope.userEmail = "me@example.com";
 
   $scope.verifyInput = function(){
     //if input is good i.e. email address and 
@@ -164,7 +238,7 @@ vicciappControllers.controller('loginController', function($scope){
     //var re = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     return re.test(email);
   }
-});*/
+});
 
 function validateEmail(email) {
   var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -181,68 +255,6 @@ function validatePw(password) {
 
 
 
-
-/*
-this.lastEventListUpdate = ""
-this.api_eventList = "http://api.getvicci.com/api/event/event_lists"
-this.api_eventDetails = "http://api.getvicci.com/api/event/event_details"
-this.api_payment = "http://api.getvicci.com/api/payment/pay"
-this.api_login = "http://api.getvicci.com/api/user/login"
-
-this.getEventList = function(callback){
-$.ajax({
-type: 'POST',
-data: {lastUpdatedTime: this.lastEventListUpdate},
-url: this.api_eventList,
-success: function(json) {
-window.localStorage.setItem("events", JSON.stringify(json));
-this.lastEventListUpdate = json.lastUpdatedTime
-if (callback) {
-callback()
-}
-},
-error: function(e) {
-  console.log(e.message);
-}
-});
-}
-*/
-
-/*
-
-$http({
-    method: 'POST',
-      url:'http://api.getvicci.com/api/event/event_lists',
-        headers: {},
-          data: {"lastUpdatedTime": ""}});
-
-
-
-artistManager.controller('artistController', function($scope) {
-  $scope.pageTitle = "Artists."
-  $scope.viewableArtists = [
-    {
-		'name': 'Carrie Underwood',
-	 	'img': 'http://ww1.prweb.com/prfiles/2012/06/24/9815034/carrie-underwood-2.jpg'
-	},
-    {
-		'name': 'Justin Beiber',
-		'img': 'http://www.billboard.com/files/styles/promo_650/public/media/justin-bieber-the-key-perfume-650-430.jpg'
-	},
-    {
-		'name': 'Joey Cozza',
-		'img': 'https://scontent-a-lax.xx.fbcdn.net/hphotos-ash2/217217_179826965402769_8331873_n.jpg'
-	},
-    {
-		'name': 'Mikey Murphy',
-		'img': 'https://scontent-b-lax.xx.fbcdn.net/hphotos-ash3/558634_4183476898960_1054087519_n.jpg'
-	},
-	{
-		'name': 'Jin Lee',
-		'img': 'https://scontent-b-lax.xx.fbcdn.net/hphotos-ash4/1001581_10153121023335416_1540078767_n.jpg'
-	}
-  ];
-});*/
 
 
 
