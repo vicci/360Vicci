@@ -34,26 +34,27 @@ Our biggest hurdle at this point is with our backend.  We have to integrate our 
 
 
 
+###Final Writeup
+
+**Description:** 
+We have created a web based Event and Merchandise management application. Before, only someone with trained programming experience and authorized by Vicci could input the Event and Merchandise data required for the app to run. We have created a web app in order to make it so simple that Taylor Swift herself can do it. Our application allows our clients to login and easily create and manage the merchandise they want Vicci to sell at their events.
+
+**Functionality:** 
++ Login
++ View/add/delete artists
++ View/add/delete events for an artist
++ View/add/delete product categories
++ View/add/delete products
 
 
+**Database Schema:**
+We used a MySQL database to store all of our information. We chose this mostly because the backend for our existing code (the web portal for purchasing the merchandise) was already in a MySQL database, and it just made sense to keep it consistent with the existing code.  From what we have read and heard, MongoDB would have been much easier to use with our NodeJS backend, but consistency took precidence. 
 
+Our entity-relationship diagram can be found on lucid chart [here](http://www.lucidchart.com/invitations/accept/52aff6d2-c7b0-467d-ac1a-7e830a004ef4)
 
+**Contributions:**
+Describe in detail the contributions made by each member of the project. Each member is responsible for contributing a few paragraphs in this section.
 
-•	Description: Explain the purpose of the site and what functionality you implemented.
-
-We have created a web based Event and Merchandise management application. Before, only someone with trained programming experience could input the Event and Merchandise data required for the app to run. We have created a web app in order to make it so simple that Taylor Swift herself can do it. Our application allows our clients to login and easily create and manage the merchandise they want Vicci to sell at their events.
-
-Functionality: 
-•	Login*
-•	View/add/delete artists
-•	View/add/delete events for an artist
-•	View/add/delete product categories
-•	View/add/delete products
-•	Safe sql
-
-•	Database Schema: Describe how data is stored in your database. If you used a relational database, show your entity-relationship diagram that includes all entities, attributes, and relationships, and explain what it contains. You should use the standard entity-relationship format as shown in class. Use a program to draw this diagram, such as lucidchart or dia. If you used a document database, show your JSON document structure and explain what it contains.
-
-•	Contributions: Describe in detail the contributions made by each member of the project. Each member is responsible for contributing a few paragraphs in this section.
-
-•	Future Work: Describe a roadmap for future development, with additional features you could add or changes to the interface.
+**Future Work:**
+Describe a roadmap for future development, with additional features you could add or changes to the interface.
 Authentication?
