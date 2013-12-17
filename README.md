@@ -31,3 +31,29 @@ Our final Interface Design can be seen on this [Prezi](http://prezi.com/ht31clpy
 At this point in the project, we have made a lot of progress on the front end. The way thay we designed our app allows us to keep the same basic structure for all of our views, which simplified our work. We are succesfully using Angular to read in a JSON object, and populate our page with that data. Also, most of the styling and CSS is also finished for those pages.  
 
 Our biggest hurdle at this point is with our backend.  We have to integrate our Node server with existing an database and things aren't working as easily as we had hoped.  We have made a copy of the database and can host it locally, but we can't get our Node server to query it for data we need.  We will be speaking with Dr. Zappala today to get a little help with this issue.   
+
+
+
+
+
+
+
+
+•	Description: Explain the purpose of the site and what functionality you implemented.
+
+We have created a web based Event and Merchandise management application. Before, only someone with trained programming experience could input the Event and Merchandise data required for the app to run. We have created a web app in order to make it so simple that Taylor Swift herself can do it. Our application allows our clients to login and easily create and manage the merchandise they want Vicci to sell at their events.
+
+Functionality: 
+•	Login*
+•	View/add/delete artists
+•	View/add/delete events for an artist
+•	View/add/delete product categories
+•	View/add/delete products
+•	Safe sql
+
+•	Database Schema: Describe how data is stored in your database. If you used a relational database, show your entity-relationship diagram that includes all entities, attributes, and relationships, and explain what it contains. You should use the standard entity-relationship format as shown in class. Use a program to draw this diagram, such as lucidchart or dia. If you used a document database, show your JSON document structure and explain what it contains.
+
+•	Contributions: Describe in detail the contributions made by each member of the project. Each member is responsible for contributing a few paragraphs in this section.
+
+•	Future Work: Describe a roadmap for future development, with additional features you could add or changes to the interface.
+Authentication?
