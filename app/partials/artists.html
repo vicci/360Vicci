@@ -2,7 +2,7 @@
   <header>
   <button>logoff</button>
   </header>
-  <div id="add-form" class="form-content content-wrapper">
+  <div id="add-form" class="form-content content-wrapper" ng-hide="form-visible">
     <form name="newArtist"><!--
     <label>Client Name:</label>-->
     <input type="text" placeholder="CLIENT NAME" ng-model="form.artistName" required/>
@@ -26,8 +26,8 @@
               </div>
             </a>
           </li>
-          <li class="entity-add" >
-				<a href="#" style="background:url(http://www.emilyplus1.com/wp-content/uploads/2013/11/plus-sign-clip-art1.png) no-repeat center; -webkit-backgroung-size:cover;
+          <li ng-click="showForm()" class="entity-add" >
+				<a href="" style="background:url(http://www.emilyplus1.com/wp-content/uploads/2013/11/plus-sign-clip-art1.png) no-repeat center; -webkit-backgroung-size:cover;
 				-moz-background-size:cover; -o-background-size:cover; background-size:cover;">
 				</a>
 
