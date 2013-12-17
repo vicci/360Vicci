@@ -40,11 +40,11 @@ Our biggest hurdle at this point is with our backend.  We have to integrate our 
 We have created a web based Event and Merchandise management application. Before, only someone with trained programming experience and authorized by Vicci could input the Event and Merchandise data required for the app to run. We have created a web app in order to make it so simple that Taylor Swift herself can do it. Our application allows our clients to login and easily create and manage the merchandise they want Vicci to sell at their events.
 
 **Functionality:** 
-Login
-View/add/delete artists
-View/add/delete events for an artist
-View/add/delete product categories
-View/add/delete products
++ Login
++ View/add/delete artists
++ View/add/delete events for an artist
++ View/add/delete product categories
++ View/add/delete products
 
 
 **Database Schema:**
