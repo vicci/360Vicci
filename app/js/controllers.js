@@ -48,7 +48,7 @@ $scope.pageTitle = 'alpha testing'
 
 vicciappControllers.controller('artistController', ['$scope', '$http',
   function($scope, $http) {
-	  $http({method: 'GET', url: 'http://www.getvicci.com/node/artists'}).
+	  $scope.getArtists = function(){$http({method: 'GET', url: 'http://www.getvicci.com/node/artists'}).
 	        success(function(data, status, headers, config) {
             console.log("angular calling node getting artists success");
 				    $scope.viewableArtists = data;
@@ -57,14 +57,19 @@ vicciappControllers.controller('artistController', ['$scope', '$http',
             console.log("angular error calling getvicci.com/node/artists");
 	          // called asynchronously if an error occurs
 	          // or server returns response with an error status.
-	        });
-    
-    
-    $scope.addArtist = function() {
-		
+	        });}
+   	$scope.getArtists();
+	$scope.formVisible = false;
+	$scope.showForm = function(){
+		$scope.formVisible = true;
+	}
+
+    $scope.addArtist = function() {	
 	    $http({method: 'PUT', url: 'http://www.getvicci.com/node/artists', data:{'artistName': $scope.form.artistName, 'artistImage': $scope.form.artistImg}})
 			.success(function(data) {
-				  console.log('Successfully added artist ' + $scope.form.artistName +' into DB');
+				console.log('Successfully added artist ' + $scope.form.artistName +' into DB');
+				$scope.getArtists();
+				$scope.formVisible = false;
 	    	}).error(function(err) {
 				  console.log('Error doing PUT')
 	    	});  
@@ -76,6 +81,7 @@ vicciappControllers.controller('artistController', ['$scope', '$http',
       $http({method: 'DELETE', url: 'http://www.getvicci.com/node/artists', headers:{'artistid': artistId}})
       .success(function(data) {
         console.log("successffully deleted artist from DB");
+		$scope.getArtists();
       }).error(function(err) {		
         console.log("error doing artist delete");
       });

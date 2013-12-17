@@ -2,7 +2,7 @@
   <header>
   <button>logoff</button>
   </header>
-  <div id="add-form" class="form-content content-wrapper" ng-hide="form-visible">
+  <div id="add-form" class="form-content content-wrapper" ng-show="formVisible">
     <form name="newArtist"><!--
     <label>Client Name:</label>-->
     <input type="text" placeholder="CLIENT NAME" ng-model="form.artistName" required/>
@@ -17,6 +17,12 @@
 
       <div class="entity-wrapper">
         <ul>
+          <li ng-click="showForm()" class="entity-add" >
+				<a href="" style="background:url(img/add.png) no-repeat center; -webkit-backgroung-size:cover;
+				-moz-background-size:cover; -o-background-size:cover; background-size:cover;">
+				</a>
+
+          </li>
           <li class="entity-li" ng-repeat="artist in viewableArtists">
             <button ng-click="deleteArtist(artist.id)">X</button>
             <a href="#/events/{{artist.id}}" style="background:url({{artist.image}}) no-repeat center; -webkit-background-size:cover;
@@ -25,12 +31,6 @@
                 <h4>{{artist.name}}</h4>
               </div>
             </a>
-          </li>
-          <li ng-click="showForm()" class="entity-add" >
-				<a href="" style="background:url(http://www.emilyplus1.com/wp-content/uploads/2013/11/plus-sign-clip-art1.png) no-repeat center; -webkit-backgroung-size:cover;
-				-moz-background-size:cover; -o-background-size:cover; background-size:cover;">
-				</a>
-
           </li>
         </ul>
       </div>
