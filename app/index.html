@@ -14,11 +14,9 @@
   <script src="js/controllers.js"></script>
 <script>
 	$(document).ready(function(){
-alert("ready")
 		$('body').on('click', '.entity-add', function(event) {
 
-			$('#add-form').hide();
-		alert("show");
+			$('#add-form').attr('ng-hide','false');
 		});
 	});
 </script>
