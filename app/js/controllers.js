@@ -4,7 +4,15 @@
 
 var vicciappControllers = angular.module("vicciappControllers", []);
 
-
+vicciappControllers.directive('stopEvent', function () {
+  return {
+    link: function (scope, element, attr) {
+      element.bind(attr.stopEvent, function (e) {
+          e.stopPropagation();
+      });
+    }
+  };
+});
 /*
 the following controller is for alpha tests.
 ie. any testing for code we want to run
@@ -62,6 +70,9 @@ vicciappControllers.controller('artistController', ['$scope', '$http',
 	$scope.formVisible = false;
 	$scope.showForm = function(){
 		$scope.formVisible = true;
+	}
+	$scope.hideForm = function(){
+		$scope.formVisible = false;
 	}
 
     $scope.addArtist = function() {	

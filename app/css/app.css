@@ -3,6 +3,19 @@
 	margin:0;
 	padding:0;
 }
+.Absolute-Center {
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+}
+.Absolute-Center.is-Image {
+  height: auto;
+}
+
+.Absolute-Center.is-Image img { 
+  width: 100%;
+  height: auto;
+}
 @font-face{
 	font-family: 'oldSans';
 	src: url('../ls
@@ -13,13 +26,13 @@ html{
 	font-family: 'oldSans', sans-serif;
 	position:relative;
 	height:100%;
-
+	background-color:black;
 }
 body {
 	display:block;
 	position:absolute;
 	height:auto;
-	background: url("http://lerablog.org/wp-content/uploads/2013/07/concert.jpg") no-repeat bottom; 
+	background: url("http://sparkedsocial.files.wordpress.com/2012/10/crowdshot-istock_000016529640large.jpg") no-repeat bottom; 
 	  -webkit-background-size: cover;
 	  -moz-background-size: cover;
 	  -o-background-size: cover;
@@ -27,10 +40,25 @@ body {
 		overflow:visible;
 }
 header{
-	position:absolute;
+	position:relative;
 	width:100%;
 	height:70px;
 	background-color:#212721;
+}
+.logo{
+	height:55px !important;
+	position:relative;
+	margin-right:50px;
+}
+.logoff{
+	border-style:none;
+	background-color:rgba(255,79,2,1);
+	text-transform:uppercase;
+	color:white;
+	position:absolute;
+	right:10px;
+	top:5px;
+	padding:10px;
 }
 .content-wrapper{
 	top:70px;
@@ -40,10 +68,15 @@ header{
 	
 }
 .form-content{
-	background-color:rgba(0,156,222,.7);
+	background-color:rgba(0,156,222,.95);
+	overflow:auto;
+	position:absolute;
+	height:50%;
+	width:50%;
+z-index:101;
+}
+.form-content form{
 	padding:20px;
-
-/*background-color:rgba(255,79,2,.7);*/
 }
 .form-content form>*{
 	display:block;
@@ -54,7 +87,8 @@ header{
 .form-content button{
 	color:white;
 	text-transform:uppercase;
-	background-color:rgba(255,79,2,.7);
+	/*background-color:rgba(255,79,2,.7);*/
+	background-color:rgba(255,79,2,1);
 	border-style:none;
 }
 .entity-wrapper{
@@ -106,6 +140,24 @@ header{
 	border-style: none;
 	width:25px;
 	height:25px;
-	z-index:1000;
-}	
+	z-index:100;
+}
+#add-form.animate{
+	-webkit-animation-name:form;
+	-webkit-animation-duration:.8s;
+	-webkit-animation-timing-function:ease;
+	-webkit-anmiation-iteration-count:1;
+	-webkit-animation-direction: normal;
+	-webkit-animation-delay: 0;
+	-webkit-animation-play-state: running;
+	-webkit-animation-fill-mode: forwards;
+}
+@-webkit-keyframes form{
+	0% {
+		margin-top:-100%;
+	}
+	100%{
+		margin-top:10%;
+	}
+}
 

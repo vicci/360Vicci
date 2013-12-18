@@ -1,8 +1,9 @@
-<div>
+<div ng-click="hideForm()" >
   <header>
-  <button>logoff</button>
+	<img class="logo Absolute-Center is-Image" src="img/Vicci_horiz_white_Logo.png" />
+  <button class="logoff">logoff</button>
   </header>
-  <div id="add-form" class="form-content content-wrapper" ng-show="formVisible">
+  <div stop-event="click" id="add-form" class="form-content Absolute-Center" ng-class="formClass" ng-show="formVisible">
     <form name="newArtist"><!--
     <label>Client Name:</label>-->
     <input type="text" placeholder="CLIENT NAME" ng-model="form.artistName" required/>
@@ -17,7 +18,7 @@
 
       <div class="entity-wrapper">
         <ul>
-          <li ng-click="showForm()" class="entity-add" >
+          <li ng-click="showForm(); formClass='animate'" class="entity-add" stop-event="click">
 				<a href="" style="background:url(img/add.png) no-repeat center; -webkit-backgroung-size:cover;
 				-moz-background-size:cover; -o-background-size:cover; background-size:cover;">
 				</a>
