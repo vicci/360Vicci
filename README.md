@@ -48,7 +48,7 @@ We have created a web based Event and Merchandise management application. Before
 
 
 **Database Schema:**
-We used a MySQL database to store all of our information. We chose this mostly because the backend for our existing code (the web portal for purchasing the merchandise) was already in a MySQL database, and it just made sense to keep it consistent with the existing code.  From what we have read and heard, MongoDB would have been much easier to use with our NodeJS backend, but consistency took precidence. 
+We used a MySQL database to store all of our information. We chose this mostly because the backend for our existing code (the web portal for purchasing the merchandise) was already in a MySQL database, and it just made sense to keep it consistent with the existing code.  From what we have read and heard, MongoDB would have been much easier to use with our NodeJS backend, but consistency took precedence. 
 
 Our entity-relationship diagram can be found on lucid chart [here](http://www.lucidchart.com/invitations/accept/52aff6d2-c7b0-467d-ac1a-7e830a004ef4)
 
@@ -56,5 +56,11 @@ Our entity-relationship diagram can be found on lucid chart [here](http://www.lu
 Describe in detail the contributions made by each member of the project. Each member is responsible for contributing a few paragraphs in this section.
 
 **Future Work:**
-Describe a roadmap for future development, with additional features you could add or changes to the interface.
-Authentication?
+One of the major pieces that needs to be implemented next is the Artist Approval functionality. When a user makes the artist and all of their data beneath it, they will then have to get it approved by an admin before that data will show up on the mobile app for fans to purchase those products.  When a user submits an artist for approval, they will provide enough information for us to validate that they have permissions to "manage" that artist. This can include name, phone number, email address, linked-in, etc. This is the key reason we made this front-end portal.  The managers (users) will provide us with all the images and information, and all we have to do it approve or deny them. 
+
+On the next iteration, we want to make the app more user friendly.  There will be less inputs for the user to fill out in order to submit an event and product.  An example of this would be latitudes and longitudes. They will be queried from the address that the user already provided us for that event. There will also be functionality to either duplicate a product/category/event or make a global flag for them, so that product will show up in every category, or more likely to be used is that every event has a particular category.  This would lessen the amount of duplicated work that a user would have to input. We will also have the user upload an image instead of giving us a url for it.  This will allow them to crop the pictures immedietely before submitting, and then we will host the image resources locally.    
+
+We also feel that adding the option for OAuth (especially social media logins) would make logging in more user friendly, and will look more into this option when we nail down some of the other functionality. 
+
+
+
