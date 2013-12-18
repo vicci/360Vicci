@@ -55,6 +55,9 @@ Our entity-relationship diagram can be found on lucid chart [here](http://www.lu
 **Contributions:**
 Describe in detail the contributions made by each member of the project. Each member is responsible for contributing a few paragraphs in this section.
 
+	Adam - Made a login page. Assisted with routing and html partials. Extensive research into authentication with node.js and passport.
+
+
 **Future Work:**
 One of the major pieces that needs to be implemented next is the Artist Approval functionality. When a user makes the artist and all of their data beneath it, they will then have to get it approved by an admin before that data will show up on the mobile app for fans to purchase those products.  When a user submits an artist for approval, they will provide enough information for us to validate that they have permissions to "manage" that artist. This can include name, phone number, email address, linked-in, etc. This is the key reason we made this front-end portal.  The managers (users) will provide us with all the images and information, and all we have to do it approve or deny them. 
 
