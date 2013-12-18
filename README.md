@@ -55,6 +55,9 @@ Our entity-relationship diagram can be found on lucid chart [here](http://www.lu
 **Contributions:**
 Describe in detail the contributions made by each member of the project. Each member is responsible for contributing a few paragraphs in this section.
 
+	Adam - Made a login page. Assisted with routing and html partials. Extensive research into authentication with node.js and passport.
+
+
 **Future Work:**
 Describe a roadmap for future development, with additional features you could add or changes to the interface.
 Authentication?
