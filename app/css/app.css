@@ -65,7 +65,7 @@ fieldset.login{
 	background:white;
 	height:30px;
 	border:solid 1px #212721;
-		padding:0;
+		padding:0 !important;
 }
 #pw-image{
 	position:absolute;
