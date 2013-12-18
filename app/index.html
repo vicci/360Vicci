@@ -15,7 +15,13 @@
 
 </head>
 <body>
-  <div ng-view> </div>
+  <header>
+	<a href="#/artists">
+	<img class="logo Absolute-Center is-Image" src="img/Vicci_horiz_white_Logo.png" />
+	</a>
+  <button class="logoff">logoff</button>
+  </header>
+  <div class="partial-wrapper" ng-click="hideForm()" ng-view> </div>
 
 
 </body>

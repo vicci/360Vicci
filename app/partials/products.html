@@ -1,33 +1,36 @@
-<div>
-  <header>
-  <button>logoff</button>
-  </header>
-
-  <div class="content-wrapper">
+ <div stop-event="click" id="add-form" class="form-content Absolute-Center" ng-class="formClass" ng-show="formVisible">
     <form name="newProduct">
-      <label>product_sku</label>
-      <input type="text" ng-model="form.productSKU" required/>
-      <label>Title</label>
-      <input type="text" ng-model="form.productTitle" required/>
-      <label>Description</label>
-      <input type="text" ng-model="form.productDescription" required/>
-      <label>Image</label>
-      <input type="text" ng-model="form.productImage" required/>
-      <label>Size</label>
-      <input type="text" ng-model="form.productSizes" required/>
-      <label>Prices</label>
-      <input type="text" ng-model="form.productPrices" required/>
-      <label>weight</label>
-      <input type="text" ng-model="form.productWeight" required/>
+ <!--     <label>product_sku</label>-->
+      <input type="text" ng-model="form.productSKU" placeholder="Sku" required/>
+<!--      <label>Title</label>-->
+      <input type="text" ng-model="form.productTitle" placeholder="Title" required/>
+<!--      <label>Description</label>-->
+      <input type="text" ng-model="form.productDescription" placeholder="Description" required/>
+<!--      <label>Image</label>-->
+      <input type="text" ng-model="form.productImage" placeholder='IMG URL -> "http://..."' required/>
+<!--      <label>Size</label>-->
+      <input type="text" ng-model="form.productSizes" placeholder="Sizes - e.g.(S,M,L,XL)" required/>
+<!--      <label>Prices</label>-->
+      <input type="text" ng-model="form.productPrices" placeholder="Price" required/>
+<!--      <label>weight</label>-->
+      <input type="text" ng-model="form.productWeight" placeholder="Weight" required/>
 	  <button ng-click='addProduct()'>Add Product</button>
     </form>
   </div>
+<div>
+
+
 
   <div class='content-wrapper'>
       <h1 class='title'>{{pageTitle}}</h1>
 
       <div class="entity-wrapper">
         <ul>
+		<li ng-click="showForm(); formClass='animate'" class="entity-add" stop-event="click">
+				<a href="" style="background:url(img/add.png) no-repeat center; -webkit-backgroung-size:cover;
+				-moz-background-size:cover; -o-background-size:cover; background-size:cover;">
+				</a>
+          </li>
           <li class="entity-li" ng-repeat="item in products">
             <button ng-click="deleteProduct(item.id)">X</button>
             <a href="http://www.google.com" style="background:url({{item.image}}) no-repeat center; -webkit-backgroung-size:cover;
@@ -36,12 +39,6 @@
                 <h4>{{item.title}}[{{item.size}}] - ${{item.price}}</h4>
               </div>
             </a>
-          </li>
-          <li class="entity-add" >
-				<a href="#" style="background:url(http://www.emilyplus1.com/wp-content/uploads/2013/11/plus-sign-clip-art1.png) no-repeat center; -webkit-background-size:cover;
-				-moz-background-size:cover; -o-background-size:cover; background-size:cover;">
-				</a>
-
           </li>
         </ul>
       </div>

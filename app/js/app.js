@@ -10,6 +10,10 @@ var vicciApp = angular.module('vicciApp', [
 vicciApp.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
+	when('/artists', {
+        templateUrl: 'partials/artists.html',
+        controller: 'artistController'
+      }).
       when('/artists', {
         templateUrl: 'partials/artists.html',
         controller: 'artistController'
