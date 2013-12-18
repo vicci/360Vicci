@@ -129,6 +129,7 @@ app.put('/events', function(req, res){
 									  +', ' + qi.escape(req.body.artistId) + ')')
 	.success(function(){
 		console.log('adding event into database');
+		res.send(200);
 	})
 	.error(function(err){
 		console.log('Error adding event into database:');
@@ -169,6 +170,7 @@ app.put('/categories', function(req, res) {
 		 						+ ',' + qi.escape(req.body.name) + ',' + qi.escape(req.body.image) + ')')
 		.success(function() {
 			console.log('added category into database');
+			res.send(200);
 		})
 		.error(function(err) {
 			console.log('Error adding category into database:');
@@ -213,6 +215,7 @@ app.put('/products', function(req, res) {
 								   + ',' + qi.escape(req.body.price) + ', ' + qi.escape(req.body.weight) + ')')
 		.success(function() {
 			console.log('added product into database');
+			res.send(200);
 		})
 		.error(function(err) {
 			console.log('Error adding product into database:');
