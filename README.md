@@ -3,7 +3,6 @@ BYU CS360 Web Application - Vicci Front End
 
 ##Instructions
 **Website:** www.getvicci.com/alphaManager
-Sign in with email authentication.
 
 ##Idea, Features, and Architecture
 
