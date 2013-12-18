@@ -53,11 +53,10 @@ We used a MySQL database to store all of our information. We chose this mostly b
 Our entity-relationship diagram can be found on lucid chart [here](http://www.lucidchart.com/invitations/accept/52aff6d2-c7b0-467d-ac1a-7e830a004ef4)
 
 **Contributions:**
-Describe in detail the contributions made by each member of the project. Each member is responsible for contributing a few paragraphs in this section.
 
-	Adam - Made a login page. Assisted with routing and html partials. Extensive research into authentication with node.js and passport.
+Adam - Made a login page. Assisted with routing and html partials. Extensive research into authentication with node.js and passport.
 
-	Joey -
+Joey - I started by learning NodeJS.  After playing with Node and Express for a while, I started making our node server that 
 
 **Future Work:**
 One of the major pieces that needs to be implemented next is the Artist Approval functionality. When a user makes the artist and all of their data beneath it, they will then have to get it approved by an admin before that data will show up on the mobile app for fans to purchase those products.  When a user submits an artist for approval, they will provide enough information for us to validate that they have permissions to "manage" that artist. This can include name, phone number, email address, linked-in, etc. This is the key reason we made this front-end portal.  The managers (users) will provide us with all the images and information, and all we have to do it approve or deny them. 
