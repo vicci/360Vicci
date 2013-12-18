@@ -96,12 +96,11 @@ vicciappControllers.controller('loginController', ['$scope', '$http',
 	var lsStore = new LocalStorageStore();
 	var loggedIn = false;
 	function get_login_status(){
-				console.log(loggedIn);
+		console.log(loggedIn);
 		return loggedIn;
 	};
 
 	function set_login_status(stat){
-		alert("ok");
 		loggedIn = stat;
 	};
 
