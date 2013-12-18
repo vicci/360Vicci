@@ -8,6 +8,8 @@
   <title>Vicci Web App</title>
   <link rel="stylesheet" href="css/app.css">
    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" ></script>
+	<script src="js/storage/ajax.js"></script>
+	<script src="js/storage/ls-store.js"></script>
   <script src="lib/angular/angular.js"></script>
   <script src="lib/angular/angular-route.js"></script>
   <script src="js/app.js"></script>
@@ -19,7 +21,12 @@
 	<a href="#/artists">
 	<img class="logo Absolute-Center is-Image" src="img/Vicci_horiz_white_Logo.png" />
 	</a>
-  <button class="logoff">logoff</button>
+	<div ng-controller='loginCheckController'>
+        <ng-switch on="loggedIn">
+            <button ng-switch-when="true" class="logoff">logoff</button>
+        </ng-switch>
+	</div>
+	
   </header>
   <div class="partial-wrapper" ng-click="hideForm()" ng-view> </div>
 

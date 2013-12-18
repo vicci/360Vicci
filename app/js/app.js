@@ -10,10 +10,6 @@ var vicciApp = angular.module('vicciApp', [
 vicciApp.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
-	when('/artists', {
-        templateUrl: 'partials/artists.html',
-        controller: 'artistController'
-      }).
       when('/artists', {
         templateUrl: 'partials/artists.html',
         controller: 'artistController'
@@ -34,8 +30,12 @@ vicciApp.config(['$routeProvider',
         templateUrl: 'partials/alphatest.html',
         controller: 'alphatestController'
       }).
+		when('/login', {
+        templateUrl: 'partials/login.html',
+        controller: 'loginController'
+      }).
       otherwise({
-        redirectTo: '/artists'
+        redirectTo: '/login'
       });
   }]);
   

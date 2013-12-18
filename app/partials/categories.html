@@ -1,8 +1,8 @@
  <div stop-event="click" id="add-form" class="form-content Absolute-Center" ng-class="formClass" ng-show="formVisible">
     <form name="newCategory">
-    <label>Category Name</label>
-    <input type="text" ng-model="form.categoryName" required/>
-    <label>Image URL</label>
+<!--    <label>Category Name</label>-->
+    <input type="text" ng-model="form.categoryName" placeholder="TITLE" required/>
+<!--    <label>Image URL</label>-->
     <input type="url" ng-model="form.categoryImage" placeholder="http://" required/>
     <button ng-click="addCategory()">Add Category</button>
     </form>

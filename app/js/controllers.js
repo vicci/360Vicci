@@ -14,10 +14,107 @@ vicciappControllers.directive('stopEvent', function () {
   };
 });
 
+vicciappControllers.controller('loginCheckController', ['$scope', '$http',
+		function($scope, $http) {
+			$scope.loggedIn = get_login_status();
+
+		
+
+  }]);
+
+vicciappControllers.controller('loginController', ['$scope', '$http',
+		function($scope, $http) {
+			if (lsStore.getCustomerId()){
+				window.location.hash = "/artists";
+				set_login_status(true);
+			}else{
+				set_login_status(false);
+			}
+
+			$scope.ajax = new ajaxCalls();
+			$scope.signUpView = true;
+			$scope.pwShow = false;
+			$scope.labelValue = "[Existing User]";
+
+			$scope.signUp = function(){
+				var login = {};
+				login.emailId = $scope.email;
+				if (!login.emailId.match(/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}\s*$/)){
+					alert("Not a valid email")
+					return
+				}
+				login.password = $scope.pw;
+				if (login.password.length < 3){
+					alert("We can manage a password length of at least 3 right?\nLet's do it!")
+					return
+				}
+				
+				if ($scope.signUpView)
+					login.isSignIn = 0;
+				else
+					login.isSignIn = 1;
+
+				login.loginProvider = 1;
+				login.userId = "";
+				
+				$scope.ajax.login(login, function(){
+					var hash = window.location.hash
+					window.location.hash = "#/artists"
+				})
+				console.log($scope.ajax);
+			}
+
+			$scope.toggleLogin = function(){
+				if ($scope.signUpView){
+					$scope.labelValue = "[New User]";
+					$("#login-button").text("Sign In");
+					$("#login-button").css("background-color", "rgba(255,79,2,1)");
+					$scope.signUpView = false;
+				}else{
+					$scope.labelValue = "[Existing User]";
+					$("#login-button").text("Sign Up");
+					$("#login-button").css("background-color", "#414141");
+					$scope.signUpView = true;
+				}
+			}
+
+			$scope.pwToggle = function(){
+				if ($scope.pwShow){
+					$("input[name='password']").get(0).type='password';
+					$("#pw-image").attr("src", "img/eyeopen.png");
+					$("#pw-image").attr("title", "Show Password");
+					$scope.pwShow = false;
+				}else{
+					$("input[name='password']").get(0).type='text';
+					$("#pw-image").attr("src", "img/eyeclose.png");
+					$("#pw-image").attr("title", "Hide Password");
+					$scope.pwShow = true;
+				}
+			}
+  }]);
+
+	var lsStore = new LocalStorageStore();
+	var loggedIn = false;
+	function get_login_status(){
+				console.log(loggedIn);
+		return loggedIn;
+	};
+
+	function set_login_status(stat){
+		alert("ok");
+		loggedIn = stat;
+	};
 
 vicciappControllers.controller('artistController', ['$scope', '$http',
   function($scope, $http) {
-	  $scope.getArtists = function(){$http({method: 'GET', url: 'http://www.getvicci.com/node/artists'}).
+		if (!lsStore.getCustomerId()){
+			window.location.hash = "/login";
+			set_login_status(false);
+		}else{
+			set_login_status(true);
+		}
+	  $scope.getArtists = function(){
+			$http({method: 'GET', url: 'http://www.getvicci.com/node/artists'}).
 	        success(function(data, status, headers, config) {
             console.log("angular calling node getting artists success");
 				    $scope.viewableArtists = data;
@@ -65,6 +162,12 @@ vicciappControllers.controller('artistController', ['$scope', '$http',
 vicciappControllers.controller('productsController', ['$scope', '$routeParams', '$http',
   function($scope, $routeParams, $http) {
     $scope.getProducts = function(){
+		if (!lsStore.getCustomerId()){
+			window.location.hash = "/login";
+			set_login_status(false);
+		}else{
+			set_login_status(true);
+		}
 		$http({method: 'POST', url:'http://www.getvicci.com/node/products', data:{'categoryId': $routeParams.categoryId}})
 		  .success(function(data) {
 		  console.log("angular success calling getvicci.com/products");
@@ -121,6 +224,12 @@ vicciappControllers.controller('productsController', ['$scope', '$routeParams', 
 
 vicciappControllers.controller('categoriesController', ['$scope', '$routeParams', '$http',
   function($scope, $routeParams, $http) {
+	if (!lsStore.getCustomerId()){
+			window.location.hash = "/login";
+			set_login_status(false);
+		}else{
+			set_login_status(true);
+		}
     $scope.getCategories = function(){$http({method: 'POST', url: 'http://www.getvicci.com/node/categories', data:{'eventId': $routeParams.eventId}}).success(function(data) {
       console.log("ANGULAR SUCCESS calling getvicci.com/categories");
       $scope.categories = data;
@@ -173,6 +282,12 @@ vicciappControllers.controller('categoriesController', ['$scope', '$routeParams'
  */
 vicciappControllers.controller('eventController', ['$scope', '$routeParams', '$http',
   function($scope, $routeParams, $http) {
+	if (!lsStore.getCustomerId()){
+			window.location.hash = "/login";
+			set_login_status(false);
+		}else{
+			set_login_status(true);
+		}
     $scope.getEvents = function(){
 		$http({method: 'POST', url: 'http://www.getvicci.com/node/events', data:{'artistId': $routeParams.artistId}}).
 		  success(function(data, status, headers, config) {
@@ -232,45 +347,7 @@ vicciappControllers.controller('eventController', ['$scope', '$routeParams', '$h
     $scope.artistId = $routeParams.artistId;
 }]);
 
-vicciappControllers.controller('loginController', function($scope){
-  $scope.username = "Enter Email";
-  $scope.password = "Password";
-  $scope.userEmail = "me@example.com";
 
-  $scope.verifyInput = function(){
-    //if input is good i.e. email address and 
-    //password are proper length etc.
-    //then verify credentials
-    //else re-login
-
-    //$scope.username = "inside verifyInput()";
-    //$scope.validEmail = $scope.validateEmail($scope.username);
-    $scope.validEmail = validateEmail($scope.username);
-    $scope.username = $scope.validEmail;
-
-    $scope.validPw = validatePw($scope.password);
-    $scope.password = $scope.validPw;
-  }
-
-  $scope.validateEmail = function(email) {
-    //$scope.username = "inside validateEmail";
-    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    //var re = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-    return re.test(email);
-  }
-});
-
-function validateEmail(email) {
-  var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  return re.test(email);
-}
-
-function validatePw(password) {
-  if (password.length > 3)
-    return true;
-  else
-    return false;
-}
 
 
 

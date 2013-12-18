@@ -1,0 +1,17 @@
+<div id="" style="" class="Absolute-Center form-content"> 
+    <fieldset id="" style="" class="login Absolute-Center">
+        <div class="styled-input">
+            <input class="login" placeholder="EMAIL" type="text" id="emailinput" name="email" ng-model="email">
+        </div>
+        <div class="styled-input">
+            <img ng-click="pwToggle()" id="pw-image" src="img/eyeopen.png" title="Show Password">
+            <input class="login" placeholder="PASSWORD" type="password" id="passwordinput" name="password" ng-model="pw">
+        </div>
+        <div id="signin-button-container">
+            <button ng-click="signUp()" id="login-button" class="page-button up" type="button">Sign Up</button>
+           <span ng-click="toggleLogin()" id="memberloginlabel" val="0" class="loginlabel fr" title="Click if you already have an account" ng-model="up">
+                {{labelValue}}
+            </span>
+        </div>
+    </fieldset>
+</div>
