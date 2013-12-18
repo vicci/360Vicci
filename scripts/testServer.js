@@ -240,6 +240,22 @@ app.delete('/products', function(req, res) {
 	
 });
 
+app.post('/login', function(req, res) {
+	
+	
+	if(req.body.isSignIn === '0'){
+		//signing up
+		var query = sequelize.query('insert into manager_user(email_id, is_sign_in, password) values()')
+
+	} else {
+		//signing in
+		var query = sequelize.query('select * from ')
+		
+	}
+	
+});
+
+
 
 var server = http.createServer(app)
 
