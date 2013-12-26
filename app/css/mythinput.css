@@ -1,4 +1,9 @@
 /* app css stylesheet */
+:root {
+  	var-vicciOrange: rgba(255,79,2,1);
+  	var-vicciBlack: #212721;
+	var-vicciBlue: rgba(0,156,222,1);
+}
 *{
 	margin:0;
 	padding:0;
@@ -47,7 +52,7 @@ header{
 	position:relative;
 	width:100%;
 	height:70px;
-	background-color:#212721;
+	background-color:var(vicciBlack);
 }
 
 
@@ -64,7 +69,7 @@ fieldset.login{
 	position:relative;
 	background:white;
 	height:30px;
-	border:solid 1px #212721;
+	border:solid 1px var(vicciBlack);
 		padding:0 !important;
 }
 #pw-image{
@@ -83,7 +88,7 @@ fieldset.login{
 	border-style:none;
 }
 #login-button{
-	background-color:#212721;
+	background-color:var(vicciBlack);
 	border-style:none;
 	margin:8px auto;
 	padding:8px;
@@ -94,7 +99,7 @@ fieldset.login{
 	float:right;
 }
 .loginlabel{
-	color: #212721;
+	color: var(vicciBlack);
 	text-transform:uppercase;
 	font-size:.75em;
 }
@@ -114,7 +119,7 @@ fieldset.login{
 }
 .logoff{
 	border-style:none;
-	background-color:rgba(255,79,2,1);
+	background-color:var(vicciOrange);
 	text-transform:uppercase;
 	color:white;
 	position:absolute;
@@ -155,7 +160,7 @@ fieldset.login{
 	color:white;
 	text-transform:uppercase;
 	/*background-color:rgba(255,79,2,.7);*/
-	background-color:rgba(255,79,2,1);
+	background-color:var(vicciOrange);
 	border-style:none;
 }
 .entity-wrapper{
@@ -172,7 +177,7 @@ fieldset.login{
 	border: solid 1px black;
 }
 .entity-wrapper li:hover{
-	border: solid 1px rgba(255,79,2,1);
+	border: solid 1px var(vicciOrange);
 }
 .entity-wrapper li a{
 	width:100%;
@@ -196,7 +201,7 @@ fieldset.login{
 }
 .title{
 	display:block;
-	color:#212721;
+	color:var(vicciBlack);
 	position:relative;
 	font-size:7em;
 }
@@ -221,25 +226,8 @@ fieldset.login{
 	-webkit-animation-delay: 0;
 	-webkit-animation-play-state: running;
 	-webkit-animation-fill-mode: forwards;
-
-	-moz-animation-name:form;
-	-moz-animation-duration:.8s;
-	-moz-animation-timing-function:ease;
-	-moz-anmiation-iteration-count:10;
-	-moz-animation-direction: normal;
-	-moz-animation-delay: 0;
-	-moz-animation-play-state: running;
-	-moz-animation-fill-mode: forwards;
 }
 @-webkit-keyframes form{
-	0% {
-		margin-top:-100%;
-	}
-	100%{
-		margin-top:10%;
-	}
-}
-@-moz-keyframes form{
 	0% {
 		margin-top:-100%;
 	}
